@@ -1,0 +1,1682 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MathWorks.MATLAB.Types</name>
+    </assembly>
+    <members>
+        <member name="T:MathWorks.MATLAB.Exceptions.MATLABException">
+            <summary>
+            Base class for exceptions related to MATLAB.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Exceptions.MATLABException.#ctor">
+            <inheritdoc/>
+        </member>
+        <member name="M:MathWorks.MATLAB.Exceptions.MATLABException.#ctor(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MathWorks.MATLAB.Exceptions.MATLABException.#ctor(System.String,System.Exception)">
+            <inheritdoc/>
+        </member>
+        <member name="F:MathWorks.MATLAB.Exceptions.MATLABException.ReadableArrayType">
+            <summary>
+            Mapping of <see cref="T:MathWorks.MATLAB.Types.ArrayType"/> to a readable string, if the string is
+            not simply the lower-case value of the enum with "_" replaced with " ".
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Exceptions.MATLABException.GetReadableArrayType(MathWorks.MATLAB.Types.ArrayType)">
+            <summary>
+            Returns the simple name of an <see cref="T:MathWorks.MATLAB.Types.ArrayType"/>.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Exceptions.MATLABException.FromDataArrayExceptionType(MathWorks.MATLAB.Types.DataArrayExceptionType)">
+            <summary>
+            Creates a <see cref="T:MathWorks.MATLAB.Exceptions.MATLABException"/> representing a call to a native MATLAB
+            Data Array API which returned an error code.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Exceptions.MATLABException.FromUnsupportedType(System.Type)">
+            <summary>
+            Creates a <see cref="T:MathWorks.MATLAB.Exceptions.UnsupportedTypeException"/> representing a .NET type that cannot
+            be converted to a native MATLAB type.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Exceptions.MATLABException.FromInvalidCast(MathWorks.MATLAB.Types.SafeHandles.ArrayImplHandle,System.Type)">
+            <summary>
+            Creates a <see cref="T:System.InvalidCastException"/> to be thrown when a MATLAB Array
+            cannot be cast to a particular .NET type.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Exceptions.MATLABException.FromExpectedCellstring(System.Type)">
+            <summary>
+            Creates an <see cref="T:System.InvalidCastException"/> to be thrown when attempting
+            to convert a cellstring MATLAB array to a native .NET Type, but all elements
+            in the cell array are not char arrays.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Exceptions.MATLABException.FromArrayToScalarCast(System.Type)">
+            <summary>
+            Creates a <see cref="T:System.InvalidCastException"/> to be thrown when a MATLAB Array
+            cannot be converted to a scalar.
+            </summary>
+            <param name="targetType">The type that the user attempted to cast to.</param>
+        </member>
+        <member name="M:MathWorks.MATLAB.Exceptions.MATLABException.FromNonVectorToArrayCast(System.Type)">
+            <summary>
+            Creates a <see cref="T:System.InvalidCastException"/> to be thrown when a MATLAB scalar
+            cannot be converted to an array.
+            </summary>
+            <param name="type">The .NET type</param>
+        </member>
+        <member name="M:MathWorks.MATLAB.Exceptions.MATLABException.FromInvalidTupleCast(System.Type,System.Int32,System.Int32)">
+            <summary>
+            Creates a <see cref="T:System.InvalidCastException"/> to be thrown when the output of
+            a MATLAB function cannot be cast to the given tuple due to an incorrect number
+            of output parameters.
+            </summary>
+            <param name="targetType"></param>
+            <param name="matlabOutputCount">The number of outputs from the MATLAB function.</param>
+            <param name="tupleElementCount">The number of type arguments in the tuple.</param>
+        </member>
+        <member name="M:MathWorks.MATLAB.Exceptions.MATLABException.FromZeroMatlabOutputs">
+            <summary>
+            Creates an <see cref="T:System.InvalidCastException"/> to be thrown when attempting
+            to retrieve the output of a MALTAB function which had zero outputs.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Exceptions.MATLABException.FromInvalidArrayRank(System.Int64,System.Int64)">
+            <summary>
+            Creates a <see cref="T:System.InvalidCastException"/> to be thrown when a MATLAB Array
+            cannot be converted to a .NET Array due to their dimensionality.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Exceptions.MATLABException.FromSettingValueObjectProperty">
+            <summary>
+            Creates a <see cref="T:System.InvalidOperationException"/> to be thrown when attempting
+            to set a property on a MATLAB value object.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Exceptions.MATLABException.FromInvalidVariableName(System.String,System.String)">
+            <summary>
+            Creates an <see cref="T:System.ArgumentException"/> to be thrown when attempting
+            to set or get a MATLAB workspace variable with an invalid name.
+            </summary>
+            <param name="varname">The name of the variable.</param>
+            <param name="paramname">The name of the parameter that caused the error.</param>
+        </member>
+        <member name="M:MathWorks.MATLAB.Exceptions.MATLABException.FromUnknownVariableName(System.String,MathWorks.MATLAB.Exceptions.MATLABExecutionException)">
+            <summary>
+            Creates a <see cref="T:System.Collections.Generic.KeyNotFoundException"/> to be thrown when attempting to
+            access a variable that does not exist in the MATLAB workspace.
+            </summary>
+            <param name="varname">The name of the variable that was not found.</param>
+            <param name="mee">The underlying <see cref="T:MathWorks.MATLAB.Exceptions.MATLABExecutionException"/>.</param>
+        </member>
+        <member name="M:MathWorks.MATLAB.Exceptions.MATLABException.FromInvalidMatlabObjectArray">
+            <summary>
+            Creates a <see cref="T:System.InvalidCastException"/> to be thrown when attempting
+            to create a MATLAB Object array whose elements do not share a common base class.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Exceptions.MATLABException.FromEmptyMatlabObjectArray">
+            <summary>
+            Creates a <see cref="T:System.InvalidCastException"/> to be thrown when attempting
+            to create an empty MATLAB object array.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Exceptions.MATLABException.FromMustUnpackOutputsForFunctionInput">
+            <summary>
+            Creates a <see cref="T:MathWorks.MATLAB.Exceptions.UnsupportedTypeException"/> to be thrown when attempting
+            to pass the output of a MATLAB function to another MATLAB function, but the
+            number of outputs was not equal to 1.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Exceptions.MATLABException.FromMustUnpackOutputsForPropOrMethodAccess">
+            <summary>
+            Creates a <see cref="T:System.InvalidOperationException"/> to be thrown when attempting
+            to access properties or methods on the result of a MATLAB function with multiple outputs.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Exceptions.MATLABException.FromMatlabPackageAsFunctionInput">
+            <summary>
+            Creates a <see cref="T:MathWorks.MATLAB.Exceptions.UnsupportedTypeException"/> to be thrown when attempting
+            to pass a <see cref="T:MathWorks.MATLAB.Types.MATLABPackage"/> instance to a MATLAB function. This generally
+            means the client meant to invoke a function, rather than access a package.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Exceptions.MATLABException.FromMatlabPackageTryConvert(System.Type)">
+            <summary>
+            Creates a <see cref="T:System.InvalidCastException"/> to be thrown when attempting
+            to convert a <see cref="T:MathWorks.MATLAB.Types.MATLABPackage"/> to another .NET type. This generally
+            means the client meant to invoke a function, rather than access a package.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Exceptions.MATLABException.FromExpectedMatlabObjectScalar(MathWorks.MATLAB.Types.ArrayType)">
+            <summary>
+            Creates a <see cref="T:System.InvalidOperationException"/> to be thrown when attempting
+            to access a property or method on a MATLAB type that is not a scalar MATLAB object.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Exceptions.MATLABException.FromSettingValueOfMATLABStruct">
+            <summary>
+            Creates an exception when a value of a  MATLABStruct is set.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Exceptions.MATLABException.FromInvalidMATLABIdentifierInConstructor(System.String)">
+            <summary>
+            Ceates an exception when an invalid MATLAB identifier is passed to a constructor.
+            </summary>
+            <param name="identifier">The invalid identifier.</param>
+        </member>
+        <member name="M:MathWorks.MATLAB.Exceptions.MATLABException.FromInvalidMATLABIdentifierDuringConversion(System.String)">
+            <summary>
+            Ceates an exception when an invalid MATLAB identifier is found during type conversion.
+            </summary>
+            <param name="identifier">The invalid identifier.</param>
+        </member>
+        <member name="M:MathWorks.MATLAB.Exceptions.MATLABException.FromMissingStructField(System.String)">
+            <summary>
+            Creates an exception when a field of a struct is not present.  This is for dot indexing when a field is not a member of the struct.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Exceptions.MATLABException.FromDuplicateStructField(System.String)">
+            <summary>
+            Exception to throw when a duplicate field is added to a MATLAB struct.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Exceptions.MATLABException.FromInvalidStructArray">
+            <summary>
+            Exception to thrown when a struct array is invalid.  This is generally due to the fields being different.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Exceptions.MATLABException.FromEnumerationNotInEnum(System.String,System.String)">
+             <summary>
+            Creates an<see href= "InvalidCastException" /> to be thrown when the name of a MATLAB enumeration value is not a member of the target .NET enumeration..
+             </summary>
+             <param name="matlabEnumeration">The name of the value of a MATLAB enumeration.</param>
+             <param name="netEnumName">The name of the.NET enum that we attempted to cast the MATLAB enum to.</param>
+        </member>
+        <member name="M:MathWorks.MATLAB.Exceptions.MATLABException.FromDictionaryImplementedMultipleTimes(System.Type)">
+            <summary>
+            Exception to be thrown when attempting to convert a .NET dictionary to a MATLAB dictionary,
+            but the .NET dictionary <paramref name="type"/> implements <see cref="T:System.Collections.Generic.IDictionary`2"/> more than once.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Exceptions.MATLABException.FromUnsupportedDictionaryKeys_NetToMatlab(System.Type)">
+            <summary>
+            Exception to be thrown when the keys of a .NET dictionary make the dictionary ineligible for
+            conversion to a MATLAB dictionary.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Exceptions.MATLABException.FromUnsupportedDictionaryValues_NetToMatlab(System.Type)">
+            <summary>
+            Exception to be thrown when the values of a .NET dictionary make the dictionary ineligible for
+            conversion to a MATLAB dictionary.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Exceptions.MATLABException.FromIncorrectDictionaryType_MatlabToNet(MathWorks.MATLAB.Types.ArrayType,System.Type)">
+            <summary>
+            Exception to be thrown when attempting to convert a MATLAB dictionary to a .NET dictionary,
+            but the entries cannot be coerced to the desired type.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Exceptions.MATLABException.FromUnsupportedDictionaryKeys_MatlabToNet(MathWorks.MATLAB.Types.ArrayType)">
+            <summary>
+            Exception to be thrown when attempting to convert a MATLAB dictionary to .NET,
+            but the keys or values in the dictionary cannot be converted, even though the
+            type itself supports conversion.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Exceptions.MATLABException.FromUnsupportedDictionaryValues_MatlabToNet(MathWorks.MATLAB.Types.ArrayType)">
+            <inheritdoc cref="M:MathWorks.MATLAB.Exceptions.MATLABException.FromUnsupportedDictionaryKeys_MatlabToNet(MathWorks.MATLAB.Types.ArrayType)"/>
+        </member>
+        <member name="T:MathWorks.MATLAB.Exceptions.MATLABExecutionException">
+            <summary>
+            Represents an error that occurred during the execution of a MATLAB function.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Exceptions.MATLABExecutionException.#ctor">
+            <inheritdoc/>
+        </member>
+        <member name="M:MathWorks.MATLAB.Exceptions.MATLABExecutionException.#ctor(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MathWorks.MATLAB.Exceptions.MATLABExecutionException.#ctor(System.String,System.Exception)">
+            <inheritdoc/>
+        </member>
+        <member name="T:MathWorks.MATLAB.Exceptions.MATLABNotAvailableException">
+            <summary>
+            Represents an error that occurred while starting, connecting, or communicating with MATLAB.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Exceptions.MATLABNotAvailableException.#ctor">
+            <inheritdoc/>
+        </member>
+        <member name="M:MathWorks.MATLAB.Exceptions.MATLABNotAvailableException.#ctor(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MathWorks.MATLAB.Exceptions.MATLABNotAvailableException.#ctor(System.String,System.Exception)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MathWorks.MATLAB.Exceptions.MATLABNotAvailableException.FromTerminatedSession">
+            <summary>
+            Creates a <see cref="T:MathWorks.MATLAB.Exceptions.MATLABNotAvailableException"/> representing a terminated MATLAB session,
+            where MATLAB can no longer be started from this application.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Exceptions.MATLABNotAvailableException.FromErrorFlag">
+            <summary>
+            Creates a <see cref="T:MathWorks.MATLAB.Exceptions.MATLABNotAvailableException"/> representing a call to a native MATLAB
+            API which set an error flag to a value of <code>true</code>.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Exceptions.MATLABNotAvailableException.FromDllNotFound(System.DllNotFoundException)">
+            <summary>
+            Creates a <see cref="T:MathWorks.MATLAB.Exceptions.MATLABNotAvailableException"/> representing an attempt to call MATLAB
+            where the a dll is not found.
+            </summary> 
+            <param name="nfe">The DllNotFoundException that will be the inner exception.</param>
+        </member>
+        <member name="M:MathWorks.MATLAB.Exceptions.MATLABNotAvailableException.FromMatlabNotFound(System.String,System.String[])">
+            <summary>
+            Creates a <see cref="T:MathWorks.MATLAB.Exceptions.MATLABNotAvailableException"/> representing an attempt to connect to
+            a MATLAB by name, but could not be located on the machine.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Exceptions.MATLABNotAvailableException.GetDirectoryAndEnvironmentVariable(System.String@,System.String@)">
+            <summary>
+            Set the directory and environment variable to display in the exception via OS checking.
+            The needed dlls reside in the following directories:
+            Windows: extern/bin/win64
+            Linux: extern/bin/glnxa64
+            Maci: extern/bin/maci64
+            
+            The path variable is different between windows and unix (same on mac and linux)
+            Windows: PATH
+            Linux: LD_LIBRARY_PATH
+            Maci: LD_LIBRARY_PATH
+            </summary>
+            <param name="directory">The directory that holds the dlls.</param>
+            <param name="path">The path variable to use.</param>
+        </member>
+        <member name="T:MathWorks.MATLAB.Exceptions.UnsupportedTypeException">
+            <summary>
+            Represents an error that occurs when attempting to convert a .NET
+            object instance to a native MATLAB type.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Exceptions.UnsupportedTypeException.#ctor">
+            <inheritdoc/>
+        </member>
+        <member name="M:MathWorks.MATLAB.Exceptions.UnsupportedTypeException.#ctor(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MathWorks.MATLAB.Exceptions.UnsupportedTypeException.#ctor(System.String,System.Exception)">
+            <inheritdoc/>
+        </member>
+        <member name="T:MathWorks.MATLAB.Types.AsyncHelpers">
+            <summary>
+            Convenience methods for processing and scheduling asynchronous tasks.
+            </summary>
+            <remarks>
+            Async can be weird and lead to deadlocks, leaks, or performance hits,
+            especially in GUI applications. Logic for supporting interrupts and
+            converting from async->sync lives here so that we know exactly where
+            to start looking when such issues are reported.
+            
+            Methods have reference links to explain their implementation.
+            </remarks>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.AsyncHelpers.WithInterruptInternal``1(System.Threading.Tasks.Task{``0},System.Threading.CancellationToken)">
+            <summary>
+            Internal helper.
+            Creates a <see cref="T:System.Threading.Tasks.Task`1"/> that can be interrupted by the 
+            provided <paramref name="cancelToken"/>. This extension can be used
+            to allow cancelling a long-running task that cannot check for 
+            cancellations itself.
+            </summary>
+            <param name="task">The task to allow interrupting.</param>
+            <param name="cancelToken">Token used to cancel an asynchronous operation.</param>
+            <returns>A task that can be interrupted.</returns>
+            <remarks>
+            Adapted from <see href="https://devblogs.microsoft.com/pfxteam/how-do-i-cancel-non-cancelable-async-operations/"/>
+            <b>If you ever await a task, you should call ConfigureAwait(false)!!!</b>
+            </remarks>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.AsyncHelpers.MakeAsyncInternal``1(System.Func{``0})">
+            <summary>
+            Internal helper. Converts a synchronous function to an asynchronous one.
+            </summary>
+            <param name="function">The function to run asynchronously.</param>
+            <returns>A task that completes when the function completes or faults.</returns>
+            <remarks>
+            Why use <i>ConfigureAwait(false)</i>?
+            <see href="https://devblogs.microsoft.com/dotnet/configureawait-faq/#why-would-i-want-to-use-configureawaitfalse"/>
+            <b>If you ever await a task, you should call ConfigureAwait(false)!!!</b>
+            </remarks>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.AsyncHelpers.MakeAsyncInternal(System.Action)">
+            <inheritdoc cref="M:MathWorks.MATLAB.Types.AsyncHelpers.MakeAsyncInternal``1(System.Func{``0})"/>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.AsyncHelpers.WaitAndGetResultInternal``1(System.Threading.Tasks.Task{``0})">
+            <summary>
+            Internal helper.
+            Blocks the current thread until the <see cref="T:System.Threading.Tasks.Task`1"/> completes
+            and returns the result. Exceptions are <b>not</b> wrapped in an
+            <see cref="T:System.AggregateException"/>, so callers should ensure their task
+            will never throw multiple exceptions (for example, when using an API like
+            <see cref="M:System.Threading.Tasks.Task.WhenAll(System.Threading.Tasks.Task[])"/>).
+            </summary>
+            <param name="task">The task to wait for.</param>
+            <returns>The result of the task.</returns>
+            <remarks>
+            Why use <i>GetAwaiter().GetResult()</i>?
+            Exceptions will not be wrapped in a <see cref="T:System.AggregateException"/>
+            at the cost of potentially missing other exceptions.
+            </remarks>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.AsyncHelpers.WaitAndGetResultInternal(System.Threading.Tasks.Task)">
+            <inheritdoc cref="M:MathWorks.MATLAB.Types.AsyncHelpers.WaitAndGetResultInternal``1(System.Threading.Tasks.Task{``0})"/>
+        </member>
+        <member name="T:MathWorks.MATLAB.Types.EngineExceptionType">
+            <summary>
+            Despite the name, used for both SDK and Engine workflows.
+            Defined in engine_api.cpp, MatlabExecutionInterface/util.hpp
+            among other locations.
+            </summary>
+        </member>
+        <member name="F:MathWorks.MATLAB.Types.EngineExceptionType.CANCELLED">
+            <summary>
+            ctrl-c received from outside MATLAB
+            </summary>
+        </member>
+        <member name="F:MathWorks.MATLAB.Types.EngineExceptionType.INTERRUPTED">
+            <summary>
+            ctrl-c received from inside MATLAB
+            </summary>
+        </member>
+        <member name="F:MathWorks.MATLAB.Types.EngineExceptionType.EXECUTION">
+            <summary>
+            MATLAB runtime error
+            </summary>
+        </member>
+        <member name="F:MathWorks.MATLAB.Types.EngineExceptionType.SYNTAX">
+            <summary>
+            MATLAB syntax error
+            </summary>
+        </member>
+        <member name="F:MathWorks.MATLAB.Types.EngineExceptionType.OTHER">
+            <summary>
+            C++ error that does not fall into the other categories
+            </summary>
+        </member>
+        <member name="F:MathWorks.MATLAB.Types.EngineExceptionType.STOPPED">
+            <summary>
+            MVM was destroyed before completion
+            </summary>
+        </member>
+        <member name="T:MathWorks.MATLAB.Types.ArrayType">
+            <summary>
+            The datatype backing a MATLAB array. Defined in ArrayType.hpp
+            </summary>
+        </member>
+        <member name="T:MathWorks.MATLAB.Types.DataArrayExceptionType">
+            <summary>
+            The return code of many unmanaged libMatlabDataArray APIs,
+            including <see cref="F:MathWorks.MATLAB.Types.DataArrayExceptionType.NoException"/>. Provides specifics as
+            to which error occurred, if any. Defined in ExceptionType.hpp
+            </summary>
+        </member>
+        <member name="T:MathWorks.MATLAB.Types.MemoryLayout">
+            <summary>
+            Defined in MemoryLayout.hpp. Options are:
+            <list type="bullet">
+            <item><see cref="F:MathWorks.MATLAB.Types.MemoryLayout.ColumnMajor"/></item>
+            <item><see cref="F:MathWorks.MATLAB.Types.MemoryLayout.RowMajor"/></item>
+            <item><see cref="F:MathWorks.MATLAB.Types.MemoryLayout.Unknown"/></item>
+            </list>
+            </summary>
+        </member>
+        <member name="T:MathWorks.MATLAB.Types.FevalTaskBuilder">
+            <summary>
+            Helper class for converting low-level Feval APIs to a <see cref="T:System.Threading.Tasks.Task`1"/>
+            consumable from <see cref="T:MathWorks.MATLAB.Types.MATLABProvider"/> methods.
+            </summary>
+        </member>
+        <member name="P:MathWorks.MATLAB.Types.FevalTaskBuilder.Task">
+            <summary>
+            Converts this <see cref="T:MathWorks.MATLAB.Types.FevalTaskBuilder"/> to a <see cref="T:System.Threading.Tasks.Task`1"/>.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.FevalTaskBuilder.#ctor(System.IO.TextWriter,System.IO.TextWriter,System.Threading.CancellationToken,System.Action{MathWorks.MATLAB.Types.TaskHandle},System.Func{MathWorks.MATLAB.Types.TaskHandle,System.Boolean,System.Boolean},System.Boolean)">
+            <param name="output">Output stream.</param>
+            <param name="error">Error stream.</param>
+            <param name="cancelToken">Cancellation token, or <see cref="P:System.Threading.CancellationToken.None"/>.</param>
+            <param name="destroyTaskHandle">Callback to free the memory allocated by the <see cref="F:MathWorks.MATLAB.Types.FevalTaskBuilder.TaskHandle"/>.</param>
+            <param name="cancelTaskHandle">Callback to cancel the running MATLAB function, given a <see cref="F:MathWorks.MATLAB.Types.FevalTaskBuilder.TaskHandle"/>.</param>
+            <param name="appendNewline"><c>true</c> if the output and error writers should append an extra newline to text, <c>false</c> otherwise.</param>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.FevalTaskBuilder.#ctor(System.IO.TextWriter,System.IO.TextWriter,System.Threading.CancellationToken,System.Action{MathWorks.MATLAB.Types.TaskHandle},System.Func{MathWorks.MATLAB.Types.TaskHandle,System.Boolean,System.Boolean})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.FevalTaskBuilder.Dispose">
+            <summary>
+            Private dispose method that disposes the saved <see cref="T:System.Threading.CancellationTokenRegistration"/>,
+            destroyes the native feval task handle, and frees the managed GC Handle to this object.
+            No other callbacks should be invoked after Dispose is called.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.FevalTaskBuilder.Cancel">
+            <summary>
+            Called when a cancellation is requested from <see cref="F:MathWorks.MATLAB.Types.FevalTaskBuilder._cancelTokenRegistration"/>.
+            </summary>
+        </member>
+        <member name="T:MathWorks.MATLAB.Types.FevalTaskBuilder.DelFevalSuccess">
+            <summary>
+            Callback used when a MATLAB function completes successfully.
+            </summary>
+            <param name="ptr">Unused</param>
+            <param name="nlhs">Number of left-hand-side args (outputs).</param>
+            <param name="scalar">Whether left-hand-side arg is scalar.</param>
+            <param name="plhs">Pointer to the first left-hand-side arg.</param>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.FevalTaskBuilder.HandleFevalSuccess(System.IntPtr,System.UInt64,System.Boolean,System.IntPtr)">
+            <summary>
+            Called when MATLAB successfully completes a function.
+            </summary>
+        </member>
+        <member name="T:MathWorks.MATLAB.Types.FevalTaskBuilder.DelFevalException">
+            <summary>
+            Callback used when a MATLAB function throws an exception.
+            </summary>
+            <param name="ptr">Unused</param>
+            <param name="nlhs">Number of left-hand-side args (outputs).</param>
+            <param name="scalar">Whether left-hand-side arg is scalar.</param>
+            <param name="exceptionType">Type of exception that occurred.</param>
+            <param name="message">The exception's message or a MATLAB struct.</param>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.FevalTaskBuilder.HandleFevalException(System.IntPtr,System.UInt64,System.Boolean,MathWorks.MATLAB.Types.EngineExceptionType,System.IntPtr)">
+            <summary>
+            Called when an exception occurs during a MATLAB function.
+            </summary>
+        </member>
+        <member name="T:MathWorks.MATLAB.Types.FevalTaskBuilder.DelWrite">
+            <summary>
+            Callback used to forward MATLAB standard output.
+            </summary>
+            <param name="textWriterPtr">Pointer passed to the MATLAB function.</param>
+            <param name="output">Output text.</param>
+            <param name="outputLength">Number of characters in the output text.</param>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.FevalTaskBuilder.HandleFevalWriter(System.IntPtr,System.IntPtr,System.UInt64)">
+            <summary>
+            Called when MATLAB needs to write text to an output or error stream.
+            </summary>
+        </member>
+        <member name="T:MathWorks.MATLAB.Types.FevalTaskBuilder.DelDelete">
+            <summary>
+            Callback used to flush standard output.
+            </summary>
+            <param name="textWriterPtr">Pointer passed to the MATLAB function.</param>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.FevalTaskBuilder.HandleFevalDeleter(System.IntPtr)">
+            <summary>
+            Called when MATLAB is finished using an output or error stream.
+            </summary>
+        </member>
+        <member name="T:MathWorks.MATLAB.Types.FevalTaskResult">
+            <summary>
+            Dynamically converts an array of <see cref="T:MathWorks.MATLAB.Types.SafeHandles.ArrayImplHandle"/> to their target types.
+            </summary>
+        </member>
+        <member name="F:MathWorks.MATLAB.Types.FevalTaskResult.Outputs">
+            <summary>
+            The raw outputs returned by the MATLAB function.
+            </summary>
+        </member>
+        <member name="F:MathWorks.MATLAB.Types.FevalTaskResult.TupleTypes">
+            <summary>
+            Full list of all ValueTuple types.
+            Structs like ValueTuple do not have inheritance,
+            so we have to manually check against each one.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.FevalTaskResult.IsTupleType(System.Type)">
+            <summary>
+            Returns <b>true</b> if the input is a ValueTuple, <b>false</b> otherwise.
+            If it's not a generic type, then its definitely not a tuple.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.FevalTaskResult.GetNumberOfTupleArguments(System.Type)">
+            <summary>
+            Gets the total number of generic type parameters for a given ValueTuple,
+            considering nested tuples.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.FevalTaskResult.ThrowFromInvalidPropOrMethodAccess(System.Object@)">
+            <summary>
+            Throws a <see cref="T:System.InvalidOperationException"/> with the appropriate text.
+            The text will either clarify that this instance is not a MATLAB object scalar,
+            or contains multiple results that have to be unpacked into a ValueTuple.
+            </summary>
+        </member>
+        <member name="F:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.ConversionHelpers.Platform">
+            <summary>
+            The platform on which this application is running.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.ConversionHelpers.Memcpy(System.IntPtr,System.IntPtr,System.Int32)">
+            <summary>
+            Invokes the platform-specific memory copy function.
+            </summary>
+        </member>
+        <member name="T:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.ConversionHelpers.GetElementFromMatlabArrayIndex">
+            <summary>
+            Given a MATLAB array and an index, returns an object that
+            represents the data at that index.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.ConversionHelpers.MatlabNumeric_to_NumericNetArray(MathWorks.MATLAB.Types.SafeHandles.ArrayImplHandle,System.Int64,System.Type)">
+            <summary>
+            Returns a .NET Array of the specified <paramref name="netArrayRank"/>
+            and <paramref name="elementType"/> representing the input MATLAB array.
+            This algorithm directly copies memory from MATLAB to .NET.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.ConversionHelpers.MatlabNumeric_to_ComplexNetArray(MathWorks.MATLAB.Types.SafeHandles.ArrayImplHandle,System.Int64,System.Array)">
+            <summary>
+            Returns a .NET Array of the specified <paramref name="netArrayRank"/>          
+            This algorithm directly copies memory a .NET double array to a .NET complex array
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.ConversionHelpers.MatlabArray_to_NetArray(MathWorks.MATLAB.Types.SafeHandles.ArrayImplHandle,System.Type,System.Type,MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.ConversionHelpers.GetElementFromMatlabArrayIndex)">
+            <summary>
+            Returns a .NET Array of type <paramref name="targetType"/> with
+            the same values as the input <paramref name="matlabArray"/>.
+            The caller must specify how to convert a MATLAB Array element
+            to the target type <paramref name="elementType"/>.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.ConversionHelpers.SetObjectData(MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.ConversionHelpers.GetElementFromMatlabArrayIndex,MathWorks.MATLAB.Types.SafeHandles.ArrayImplHandle,System.UInt64[],System.Array,System.Int64[],System.Int64)">
+            <summary>
+            Copies the elements from a MATLAB array to a pre-allocated .NET array.
+            We need to use an intermediate array to support squeezing + stretching.
+            </summary>
+        </member>
+        <member name="T:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.ConversionHelpers.SetIndexFromNetArrayElement">
+            <summary>
+            Given a MATLAB array, .NET array, and linear index,
+            sets the value of the MATLAB array at that index to
+            the provided value.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.ConversionHelpers.NetArray_to_MatlabArray(MathWorks.MATLAB.Types.SafeHandles.ArrayFactoryHandle,System.Array,MathWorks.MATLAB.Types.ArrayType,MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.ConversionHelpers.SetIndexFromNetArrayElement)">
+            <summary>
+            Returns a MATLAB Array of type <paramref name="targetType"/> with
+            the same values as the input <paramref name="netArray"/>.
+            The caller must specify what value to set at a particular index
+            in relation to the input.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.ConversionHelpers.ArrayFill``1(``0[],``0,System.Int64,System.Int64)">
+            <summary>
+            Sets the entries of <paramref name="array"/> with <paramref name="value"/>,
+            starting at <paramref name="startIndex"/> and stopping after <paramref name="count"/>
+            elements. This function doesn't come with the .NET Standard, so we made our own.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.ConversionHelpers.PadWithLeadingOnes(System.Int64[],System.Int64)">
+            <summary>
+            Prepends the vector <paramref name="array"/> with ones so that the 
+            return array has <paramref name="targetLen"/> elements.
+            </summary>
+            <returns>The input array prepended with ones.</returns>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.ConversionHelpers.PadWithTrailingOnes(System.Int64[],System.Int64)">
+            <summary>
+            Appends the vector <paramref name="array"/> with ones so that the 
+            return array has <paramref name="targetLen"/> elements.
+            </summary>
+            <returns>The input array prepended with ones.</returns>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.ConversionHelpers.TrimLeadingOnes(System.Int64[])">
+            <summary>
+            Returns an array equivalent to <paramref name="array"/> with
+            all leading ones removed.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.ConversionHelpers.GetNetArrayDimsFromMatlabArray(MathWorks.MATLAB.Types.SafeHandles.ArrayImplHandle,System.Int64)">
+            <summary>
+            Given the MATLAB array <paramref name="matlabArray"/>, calculates the
+            dimension vector for the equivalent .NET array with <paramref name="netArrayRank"/>
+            dimensions.
+            </summary>
+            <exception cref="T:System.InvalidCastException"/>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.DictionaryConverters.GetEntries(MathWorks.MATLAB.Types.SafeHandles.ReferenceImplHandle,System.String,System.String)">
+            <summary>
+            Returns the <paramref name="entriesField"/> and <paramref name="combinedField"/> fields of struct <paramref name="dataRef"/>.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.DictionaryConverters.GetDictionaryTypeForUnconfigured(System.Type)">
+            <summary>
+            Given the target .NET dictionary type (class or interface), determines the concrete
+            class to instantiate for an unconfigured MATLAB dictionary.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.DictionaryConverters.GetDictionaryTypeForConfigured(MathWorks.MATLAB.Types.SafeHandles.ReferenceImplHandle,System.Type,MathWorks.MATLAB.Types.SafeHandles.ArrayImplHandle,System.Boolean,MathWorks.MATLAB.Types.SafeHandles.ArrayImplHandle,System.Boolean)">
+            <summary>
+            Given the target .NET dictionary type (class or interface), and the source MATLAB
+            dictionary, determines the class to instantiate.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.DictionaryConverters.GetArrayTypeFromEntries(MathWorks.MATLAB.Types.SafeHandles.ArrayImplHandle,System.Boolean)">
+            <summary>
+            Gets the <see cref="T:MathWorks.MATLAB.Types.ArrayType"/> of the elements in <paramref name="entries"/>.
+            If <paramref name="isCombined"/> is false, assumes that <paramref name="entries"/>
+            is a cell array whose elements should be inspected.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.DictionaryConverters.IsUnconfiguredDictionary(MathWorks.MATLAB.Types.SafeHandles.ReferenceImplHandle)">
+            <summary>
+            'true' if the input dictionary is unconfigured, 'false' if the dictionary is configured.
+            </summary>
+            <param name="dataRef"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.DictionaryConverters.TryGetDictionaryTypeFromProp(MathWorks.MATLAB.Types.SafeHandles.ReferenceImplHandle,MathWorks.MATLAB.Types.ArrayType@,MathWorks.MATLAB.Types.ArrayType@)">
+            <summary>
+            Attempts to get the "KeyType" and "ValueType" serialized properties of the input dictionary data.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.DictionaryConverters.GetNetTypeFromArrayType(MathWorks.MATLAB.Types.ArrayType)">
+            <summary>
+            Returns the required .NET type needed for .NET dictionary entries to support
+            conversion from a MATLAB dictionary with entries <paramref name="type"/>.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.DictionaryConverters.GetArrayTypeFromMatlabString(System.String)">
+            <summary>
+            Given the name of a MATLAB type, returns the equivalent <see cref="T:MathWorks.MATLAB.Types.ArrayType"/>.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.DictionaryConverters.ImplementsIDictionary(System.Type)">
+            <summary>
+            Returns "true" if <paramref name="managedType"/> implements <see cref="T:System.Collections.Generic.IDictionary`2"/>.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.DictionaryConverters.CreateUnconfiguredStruct(MathWorks.MATLAB.Types.SafeHandles.ArrayFactoryHandle)">
+            <summary>
+            Creates a scalar MATLAB struct that deserializes into a MATLAB dictionary.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.DictionaryConverters.CreateConfiguredStruct``2(MathWorks.MATLAB.Types.SafeHandles.ArrayFactoryHandle,System.Collections.Generic.IDictionary{``0,``1})">
+            <summary>
+            Creates a scalar MATLAB struct that deserializes to a configured MATLAB dictionary
+            with the specified keys and values.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.DictionaryConverters.SetStructUnconfigured(MathWorks.MATLAB.Types.SafeHandles.ArrayFactoryHandle,MathWorks.MATLAB.Types.SafeHandles.ReferenceImplHandle)">
+            <summary>
+            Sets the "Unconfigured" field of the MATLAB struct <paramref name="structArrayRef"/> to "true".
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.DictionaryConverters.SetStructEntry(MathWorks.MATLAB.Types.SafeHandles.ArrayFactoryHandle,MathWorks.MATLAB.Types.SafeHandles.ReferenceImplHandle,System.Array,System.Boolean,System.String,System.String)">
+            <summary>
+            Sets the <paramref name="entriesFieldName"/> and <paramref name="isCombinedFieldName"/> fields of the 
+            MATLAB struct <paramref name="structArrayRef"/> to <paramref name="entries"/> and "true" respectively.
+            </summary>
+            <param name="factory"></param>
+            <param name="structArrayRef"></param>
+            <param name="entries">An array of either the keys or values in the dictionary.</param>
+            <param name="isCombined"><see langword="true"/> if entries are (1) NOT in an <c>object[]</c> or (2) the entries are of type 'cell'.</param>
+            <param name="entriesFieldName">Name of the serialized MDA field containing the <paramref name="entries"/>.</param>
+            <param name="isCombinedFieldName">Name of the serialized MDA field containing <paramref name="isCombined"/>.</param>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.DictionaryConverters.SetStructVersion(MathWorks.MATLAB.Types.SafeHandles.ArrayFactoryHandle,MathWorks.MATLAB.Types.SafeHandles.ReferenceImplHandle)">
+            <summary>
+            Sets the "Version" field of the MATLAB struct <paramref name="structArrayRef"/> to 1ul.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.DictionaryConverters.CanBeCombined(System.Type)">
+            <summary>
+            Returns 'true' if <paramref name="entryType"/> is converted to a MATLAB type
+            that can safely be combined with 'IsKeyCombined'/'IsValueCombined'. For example,
+            object, double, or string. Class objects like datetime cannot be combined to
+            avoid losing data or attempting to concatenate nonscalar objects.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.DictionaryConverters.GetKeysAndValues``2(System.Collections.Generic.IDictionary{``0,``1},System.Boolean,System.Boolean)">
+            <summary>
+            Extracts the key/value pairs in <paramref name="dictionary"/> into two arrays.
+            </summary>
+        </member>
+        <member name="F:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.NumericConverters._numericScalarTypeMapping">
+            <summary>
+            Maps a .NET numeric scalar <see cref="T:System.Type"/> to a MATLAB <see cref="T:MathWorks.MATLAB.Types.ArrayType"/>.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.StringConverters.GetStringValue(MathWorks.MATLAB.Types.SafeHandles.ArrayImplHandle,System.Int64[])">
+            <summary>
+            Retrieves an element from a MATLAB array and interprets it as a native .NET string.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.StringConverters.SetStringValue(MathWorks.MATLAB.Types.SafeHandles.ArrayImplHandle,System.Object,System.Int64[])">
+            <summary>
+            Sets an element of a MATLAB array to a MATLAB string.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.StructConverters.MatlabMatlabStruct_to_NetMatlabStructArray(MathWorks.MATLAB.Types.MATLABProvider,MathWorks.MATLAB.Types.SafeHandles.ArrayFactoryHandle,MathWorks.MATLAB.Types.SafeHandles.ArrayImplHandle,MathWorks.MATLAB.Types.ArrayType,System.Type,System.Type)">
+            <summary>
+            Convert a MATLAB Struct array to a .NET MATLAB Struct array.
+            </summary>
+            <param name="matlab">The owning MATLAB instance.</param>
+            <param name="factory">An array factory to create struct arrays.</param>
+            <param name="arrayHandle">The array to convert.</param>
+            <param name="matlabType">The type of the array in MATLAB.</param>
+            <param name="targetType">The type to convert the array to.</param>
+            <param name="targetElementType">The type to convert the elements of the array to</param>
+            <returns>A MATLAB Struct.</returns>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.StructConverters.ThrowIfMismatchingFields(System.Array)">
+            <summary>
+            Throw an InvalidOperationException if the structs in the passed in array do not have the same fields.
+            </summary>
+            <param name="array">The array of structs whose fields to verify.</param>
+        </member>
+        <member name="T:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.ManagedToMATLABConverter">
+            <summary>
+            Converts a managed object with the given type to a MATLAB array.
+            </summary>
+        </member>
+        <member name="T:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.ManagedToMATLABArrayConverter">
+            <summary>
+            Converts a managed array with the given element type to a MATLAB array.
+            </summary>
+        </member>
+        <member name="F:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.ManagedToMATLABConverters">
+            <summary>
+            Maps a managed type to its ManagedToMATLAB converter.
+            </summary>
+        </member>
+        <member name="F:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.ManagedToMATLABArrayConverters">
+            <summary>
+            Maps a managed array's <see cref="M:System.Type.GetElementType"/> to its ManagedToMATLAB converter.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.ManagedToMATLAB(MathWorks.MATLAB.Types.SafeHandles.ArrayFactoryHandle,System.Object)">
+            <inheritdoc cref="M:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.ManagedToMATLAB(System.Object)"/>
+        </member>
+        <member name="T:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.MATLABToManagedConverter">
+            <summary>
+            Attempts to convert a MATLAB array to the given managed type.
+            </summary>
+            <exception cref="T:System.InvalidCastException"/>
+        </member>
+        <member name="T:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.MATLABToManagedArrayConverter">
+            <summary>
+            Attemtps to convert a MATLAB array to a managed array with the given element type.
+            </summary>
+            <exception cref="T:System.InvalidCastException"/>
+        </member>
+        <member name="F:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.MATLABToManagedConverters">
+            <summary>
+            Maps a MATLAB-to-managed type pair to its MATLABToManaged converter.
+            Keys represent a mapping of a MATLAB type to a managed type.
+            Some MATLAB types can be converted to multiple managed types. For instance, a MATLAB char array
+            can be converted to either a managed string or managed char array.
+            </summary>
+        </member>
+        <member name="F:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.MATLABToManagedArrayConverters">
+            <summary>
+            Maps a MATLAB-to-managed type pair to its MATLABToManaged converter.
+            Keys represent a mapping of a MATLAB type to a managed array's <see cref="M:System.Type.GetElementType"/>.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.MATLABToManaged(MathWorks.MATLAB.Types.MATLABProvider,MathWorks.MATLAB.Types.SafeHandles.ArrayFactoryHandle,MathWorks.MATLAB.Types.SafeHandles.ArrayImplHandle,System.Type)">
+            <inheritdoc cref="M:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.MATLABToManaged(MathWorks.MATLAB.Types.MATLABProvider,MathWorks.MATLAB.Types.SafeHandles.ArrayImplHandle,System.Type)"/>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.WrapArrayImplHandle(MathWorks.MATLAB.Types.MATLABProvider,MathWorks.MATLAB.Types.SafeHandles.ArrayImplHandle)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.GetElementSizeInBytes(System.Type)">
+            <summary>
+            Returns the size of a datatype in bytes when contained
+            in an array.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.GetDimsForArray(System.Array)">
+            <summary>
+            Gets an array representing the dimensions of the input.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.GetNumberOfElements(System.Array)">
+            <summary>
+            Returns the total number of elements in <paramref name="array"/>.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.IncrementIndex(System.Int64[],System.UInt64[])">
+            <summary>
+            Increments the index array, returning <b>false</b> when all indices have been exhausted.
+            Useful when iterating through ND arrays of unknown rank.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.IncrementIndex(System.Int64[],System.Int64[])">
+            <inheritdoc cref="M:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.IncrementIndex(System.Int64[],System.UInt64[])"/>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.Impl.MATLABArrayFactoryImpl.GetArrayRank(System.Type,MathWorks.MATLAB.Types.SafeHandles.ArrayImplHandle)">
+            <summary>
+            Returns the number of dimensions in the generic array type <paramref name="arrayType"/>,
+            defaulting to the number of dimensions of <paramref name="handle"/> if dimensions are
+            not specified.
+            </summary>
+        </member>
+        <member name="T:MathWorks.MATLAB.Types.MATLABArray">
+            <summary>
+            Represents a MATLAB array that has not yet been converted to a native .NET type.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.MATLABArray.IsValidIdentifier(System.String)">
+            <summary>
+            Checks if the input <paramref name="id"/> is a valid MATLAB identifier.
+            For example, suitable as a struct field or workspace variable.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.MATLABArray.#ctor(MathWorks.MATLAB.Types.MATLABProvider,MathWorks.MATLAB.Types.SafeHandles.ArrayImplHandle)">
+            <summary>
+            Creates a <see cref="T:MathWorks.MATLAB.Types.MATLABArray"/> that uses the provided
+            <paramref name="matlab"/> to convert itself to a managed type.
+            </summary>
+            <exception cref="T:System.ArgumentNullException"/>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.MATLABArray.#ctor(MathWorks.MATLAB.Types.MATLABArrayFactory,MathWorks.MATLAB.Types.SafeHandles.ArrayImplHandle)">
+            <summary>
+            Creates a <see cref="T:MathWorks.MATLAB.Types.MATLABArray"/> that uses the provided
+            <paramref name="arrayFactory"/> to convert itself to a managed type.
+            </summary>
+            <exception cref="T:System.ArgumentNullException"/>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.MATLABArray.#ctor(MathWorks.MATLAB.Types.MATLABProvider,MathWorks.MATLAB.Types.MATLABArrayFactory,MathWorks.MATLAB.Types.SafeHandles.ArrayImplHandle)">
+            <summary>
+            Creates a <see cref="T:MathWorks.MATLAB.Types.MATLABArray"/> that uses the provided
+            <see cref="T:MathWorks.MATLAB.Types.MATLABArrayFactory"/> to convert itself to a managed type
+            and associates it with the provided <see cref="T:MathWorks.MATLAB.Types.MATLABProvider"/> instance.
+            </summary>
+            <exception cref="T:System.ArgumentNullException"/>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.MATLABArray.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.MATLABArray.TryConvert(System.Dynamic.ConvertBinder,System.Object@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.MATLABArray.TryGetMember(System.Dynamic.GetMemberBinder,System.Object@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.MATLABArray.TrySetMember(System.Dynamic.SetMemberBinder,System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.MATLABArray.TryInvokeMember(System.Dynamic.InvokeMemberBinder,System.Object[],System.Object@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:MathWorks.MATLAB.Types.MATLABArrayFactory">
+            <summary>
+            Internal class used for converting between managed objects and MATLAB arrays.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.MATLABArrayFactory.ManagedToMATLAB(System.Object)">
+            <summary>
+            Converts a managed .NET object to a native MATLAB array and returns the result.
+            </summary>
+            <exception cref="T:MathWorks.MATLAB.Exceptions.UnsupportedTypeException" />
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.MATLABArrayFactory.MATLABToManaged(MathWorks.MATLAB.Types.MATLABProvider,MathWorks.MATLAB.Types.SafeHandles.ArrayImplHandle,System.Type)">
+            <summary>
+            Converts an unmanaged MATLAB array to a native .NET object and returns the result.
+            </summary>
+            <exception cref="T:System.InvalidCastException"/>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.MATLABArrayFactory.WrapArrayImplHandle(MathWorks.MATLAB.Types.MATLABProvider,MathWorks.MATLAB.Types.SafeHandles.ArrayImplHandle)">
+            <summary>
+            Returns a MATLABArray, MATLABObject, or MATLABStruct depending on the underlying MATLAB type.
+            </summary>
+        </member>
+        <member name="T:MathWorks.MATLAB.Types.MATLABClassAttribute">
+            <summary>
+            Represent .NET class as a MATLAB class.
+            </summary>
+        </member>
+        <member name="P:MathWorks.MATLAB.Types.MATLABClassAttribute.Name">
+            <summary>
+            The name of the class in MATLAB.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.MATLABClassAttribute.#ctor(System.String)">
+            <summary>
+            Create a MATLAB class attribute.
+            </summary>
+            <param name="name">The name of the class</param>
+        </member>
+        <member name="T:MathWorks.MATLAB.Types.MATLABEnumAttribute">
+            <summary>
+            Represent .NET enumeration as MATLAB enumeration.
+            </summary>
+        </member>
+        <member name="P:MathWorks.MATLAB.Types.MATLABEnumAttribute.Name">
+            <summary>
+            The name of the enum in MATLAB.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.MATLABEnumAttribute.#ctor(System.String)">
+            <summary>
+            Create a MATLAB enum attribute.
+            </summary>
+            <param name="name">The name of the enum</param>
+        </member>
+        <member name="T:MathWorks.MATLAB.Types.MATLABObject">
+            <summary>
+            Represents a MATLAB handle or value class.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.MATLABObject.TryInvokeMember(System.Dynamic.InvokeMemberBinder,System.Object[],System.Object@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.MATLABObject.TryGetMember(System.Dynamic.GetMemberBinder,System.Object@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.MATLABObject.TrySetMember(System.Dynamic.SetMemberBinder,System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="T:MathWorks.MATLAB.Types.MATLABProvider">
+            <summary>
+            Base class for implementing dynamic behavior that invokes MATLAB functions.
+            Subclasses only need to specify how async MATLAB functions are invoked -
+            this class handles dynamic dispatch.
+            </summary>
+        </member>
+        <member name="F:MathWorks.MATLAB.Types.MATLABProvider.ArrayFactory">
+            <summary>
+            The array factory that this MATLAB engine or runtime instance
+            uses to convert data to and from MATLAB and .NET.
+            </summary>
+        </member>
+        <member name="P:MathWorks.MATLAB.Types.MATLABProvider.Disposed">
+            <summary>
+            Whether this MATLAB instance has been disposed and can
+            no longer be interacted with.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.MATLABProvider.#ctor(MathWorks.MATLAB.Types.MATLABArrayFactory)">
+            <summary>
+            Creates a <see cref="T:MathWorks.MATLAB.Types.MATLABProvider"/> that uses the provided
+            <see cref="T:MathWorks.MATLAB.Types.MATLABArrayFactory"/> to convert to and from native
+            MATLAB types.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.MATLABProvider.Finalize">
+            <inheritdoc/>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.MATLABProvider.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.MATLABProvider.Dispose(System.Boolean)">
+            <summary>
+            Cleans up remaining resources during object disposal.
+            </summary>
+            <remarks>
+            Unmanaged state should be disposed unconditionally.
+            If <paramref name="disposing"/> is true, managed state should also be disposed.
+            Be sure to call this method if overridden in a base class.
+            </remarks>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.MATLABProvider.TryGetMember(System.Dynamic.GetMemberBinder,System.Object@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.MATLABProvider.TryInvokeMember(System.Dynamic.InvokeMemberBinder,System.Object[],System.Object@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.MATLABProvider.InvokeFunctionAsync(System.String,System.Int32,System.IO.TextWriter,System.IO.TextWriter,MathWorks.MATLAB.Types.SafeHandles.ArrayImplHandle[],System.Threading.CancellationToken)">
+            <summary>
+            Returns a task which completes with the output of a MATLAB function.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.MATLABProvider.GetNameValueArgs(System.Dynamic.InvokeMemberBinder,System.Object[])">
+            <summary>
+            Gets a mapping of argument names to their corresponding value.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.MATLABProvider.ConvertOutputTask(System.Threading.Tasks.Task{MathWorks.MATLAB.Types.SafeHandles.ArrayImplHandle[]})">
+            <summary>
+            Converts <paramref name="outputTask"/> to a task that is consumable
+            from the client application.
+            </summary>
+        </member>
+        <member name="T:MathWorks.MATLAB.Types.MATLABStruct">
+            <summary>
+            Represents a MATLAB Struct.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.MATLABStruct.#ctor(System.ValueTuple{System.String,System.Object}[])">
+            <summary>
+            Construct a MATLAB struct from strings and values.
+            Example: MATLABStruct(("x",2),("y",2))
+            </summary>
+            <param name="args">"Array of tuples mapping the <see cref="T:MathWorks.MATLAB.Types.MATLABStruct"/>'s fieldnames to their values."</param>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.MATLABStruct.GetFieldNames">
+            <summary>
+            Return the fields of the MATLAB Struct.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.MATLABStruct.Count">
+            <summary>
+            Returns the number of fields.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.MATLABStruct.IsField(System.String)">
+            <summary>
+            Check if the struct contains the passed in field.
+            </summary>
+            <param name="field">The field to search for.</param>
+            <returns>True if the field is found, false otherwise.</returns>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.MATLABStruct.GetField(System.String)">
+            <summary>
+            Get the value associated with a field.
+            </summary>
+            <param name="field">The name of the field to get the value of.</param>
+            <returns>The value associated with the field.</returns>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.MATLABStruct.GetHashCode">
+            <inheritdoc cref = "M:System.Object.GetHashCode" />
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.MATLABStruct.Equals(System.Object)">
+            <inheritdoc cref = "M:System.Object.Equals(System.Object)" />
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.MATLABStruct.TrySetMember(System.Dynamic.SetMemberBinder,System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.MATLABStruct.TryGetMember(System.Dynamic.GetMemberBinder,System.Object@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:MathWorks.MATLAB.Types.MATLABWorkspace">
+            <summary>
+            Provides an interface to the MATLAB base workspace.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.MATLABWorkspace.GetVariable(System.String)">
+            <summary>
+            Access a variable from the MATLAB base workspace.
+            </summary>
+            <param name="key">Name of a variable in the MATLAB workspace.</param>
+            <returns>Variable obtained from the MATLAB base workspace.</returns>
+            <exception cref="T:System.ArgumentNullException"/>
+            <exception cref="T:MathWorks.MATLAB.Exceptions.MATLABExecutionException"/>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.MATLABWorkspace.SetVariable(System.String,System.Object)">
+            <summary>
+            Put a variable into the MATLAB base workspace. If a variable with the same name 
+            exists in the MATLAB workspace, SetVariable overwrites it.
+            </summary>
+            <param name="key">Name of the variable to create in the MATLAB workspace.</param>
+            <param name="value">Value of the variable to create in the MATLAB workspace.</param>
+            <exception cref="T:System.ArgumentNullException"/>
+            <exception cref="T:MathWorks.MATLAB.Exceptions.MATLABExecutionException"/>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.MATLABWorkspace.GetVariableAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Access a variable from the MATLAB base workspace asynchronously.
+            </summary>
+            <param name="key">Name of a variable in the MATLAB workspace.</param>
+            <param name="cancelToken">Token used to cancel an asynchronous operation.</param>
+            <returns>Variable obtained from the MATLAB base workspace.</returns>
+            <exception cref="T:System.ArgumentNullException"/>
+            <exception cref="T:MathWorks.MATLAB.Exceptions.MATLABExecutionException"/>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.MATLABWorkspace.SetVariableAsync(System.String,System.Object,System.Threading.CancellationToken)">
+            <summary>
+            Put a variable into the MATLAB base workspace asynchronously. If a variable with 
+            the same name exists in the MATLAB workspace, SetVariableAsync overwrites it.
+            </summary>
+            <param name="key">Name of the variable to create in the MATLAB workspace.</param>
+            <param name="value">Value of the variable to create in the MATLAB workspace.</param>
+            <param name="cancelToken">Token used to cancel an asynchronous operation.</param>
+            <exception cref="T:System.ArgumentNullException"/>
+            <exception cref="T:MathWorks.MATLAB.Exceptions.MATLABExecutionException"/>
+        </member>
+        <member name="P:MathWorks.MATLAB.Types.MATLABWorkspace.Keys">
+            <summary>
+            Gets an enumerable collection that contains the names of
+            variables in the MATLAB base workspace.
+            </summary>
+        </member>
+        <member name="P:MathWorks.MATLAB.Types.MATLABWorkspace.Values">
+            <summary>
+            Gets an enumerable collection that contains the values of
+            variables in the MATLAB base workspace.
+            </summary>
+        </member>
+        <member name="P:MathWorks.MATLAB.Types.MATLABWorkspace.Count">
+            <summary>
+            Gets the number of variables in the MATLAB base workspace.
+            </summary>
+        </member>
+        <member name="P:MathWorks.MATLAB.Types.MATLABWorkspace.Item(System.String)">
+            <summary>
+            Gets or sets a variable in the MATLAB base workspace.
+            A <see cref="T:System.Collections.Generic.KeyNotFoundException"/> is thrown when a
+            requested key is not present, whose <see cref="P:System.Exception.InnerException"/>
+            is the <see cref="T:MathWorks.MATLAB.Exceptions.MATLABExecutionException"/> that caused it.
+            </summary>
+            <param name="key">Name of a variable in the MATLAB workspace.</param>
+            <returns>Variable obtained from the MATLAB base workspace.</returns>
+            <exception cref="T:System.ArgumentNullException"/>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException"/>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.MATLABWorkspace.ContainsKey(System.String)">
+            <summary>
+            Determines whether the MATLAB base worksapce contains the specified variable.
+            </summary>
+            <param name="key">Name of a variable in the MATLAB workspace.</param>
+            <returns><b>true</b> if the variable exists in the MATLAB workspace, <b>false</b> otherwise.</returns>
+            <exception cref="T:System.ArgumentNullException"/>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.MATLABWorkspace.TryGetValue(System.String,System.Object@)">
+            <summary>
+            Gets the value that is associated with the specified variable name.
+            </summary>
+            <param name="key">The variable to locate.</param>
+            <param name="value">
+            When this method returns, the value associated with the specified key, if the key is found; 
+            otherwise, <b>null</b>.
+            </param>
+            <returns><b>true</b> if the variable exists in the MATLAB workspace, <b>false</b> otherwise.</returns>
+            <exception cref="T:System.ArgumentNullException"/>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.MATLABWorkspace.TryGetValue``1(System.String,``0@)">
+            <inheritdoc cref="M:MathWorks.MATLAB.Types.MATLABWorkspace.TryGetValue(System.String,System.Object@)"/>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.MATLABWorkspace.GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="T:MathWorks.MATLAB.Types.TaskHandle">
+            <summary>
+            Pointer to an active MATLAB function.
+            Allows you to query the status and send cancellation requests
+            to a currently-executing MATLAB function.
+            </summary>
+        </member>
+        <member name="T:MathWorks.MATLAB.Types.RunOptions">
+            <summary>
+            Collection of options for invoking MATLAB functions.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.RunOptions.#ctor(System.Int32,System.Boolean)">
+            <summary>
+            Creates a <see cref="T:MathWorks.MATLAB.Types.RunOptions"/> instance to run MATLAB functions with the
+            given number of output arguments either synchronously or asynchronously.
+            </summary>
+            <param name="nargout">Number of returned values.</param>
+            <param name="async">Whether to run the function asynchronously.</param>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.RunOptions.#ctor(System.Threading.CancellationToken,System.Int32)">
+            <summary>
+            Creates a <see cref="T:MathWorks.MATLAB.Types.RunOptions"/> instance to run MATLAB functions with the
+            specified output and error streams and given number of output arguments either 
+            synchronously or asynchronously.
+            </summary>
+            <param name="cancelToken">Token used to cancel an asynchronous operation.</param>
+            <param name="nargout">Number of returned values.</param>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.RunOptions.#ctor(System.IO.TextWriter,System.IO.TextWriter,System.Int32,System.Boolean)">
+            <summary>
+            Creates a <see cref="T:MathWorks.MATLAB.Types.RunOptions"/> instance to run MATLAB functions with the
+            specified output and error streams and given number of output arguments either 
+            synchronously or asynchronously.
+            </summary>
+            <param name="output">Stream used to store the standard output from the MATLAB function.</param>
+            <param name="error">Stream used to store the error message from the MATLAB function.</param>
+            <param name="nargout">Number of returned values.</param>
+            <param name="async">Whether to run the function asynchronously.</param>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.RunOptions.#ctor(System.IO.TextWriter,System.IO.TextWriter,System.Threading.CancellationToken,System.Int32)">
+            <summary>
+            Creates a <see cref="T:MathWorks.MATLAB.Types.RunOptions"/> instance to run a MATLAB function asynchronously with
+            the specified output and error streams, <see cref="T:System.Threading.CancellationToken"/>, and number of
+            output arguments.
+            </summary>
+            <param name="output">Stream used to store the standard output from the MATLAB function.</param>
+            <param name="error">Stream used to store the error message from the MATLAB function.</param>
+            <param name="cancelToken">Token used to cancel an asynchronous operation.</param>
+            <param name="nargout">Number of returned values.</param>
+        </member>
+        <member name="P:MathWorks.MATLAB.Types.RunOptions.Nargout">
+            <summary>
+            Number of values to be returned by the MATLAB function.
+            Defaults to 1.
+            </summary>
+        </member>
+        <member name="P:MathWorks.MATLAB.Types.RunOptions.Async">
+            <summary>
+            Whether to execute the MATLAB function asynchronously.
+            Defaults to false.
+            </summary>
+        </member>
+        <member name="P:MathWorks.MATLAB.Types.RunOptions.CancelToken">
+            <summary>
+            The <see cref="T:System.Threading.CancellationToken"/> to use when evaluating a MATLAB function asynchronously.
+            Defaults to <see cref="P:System.Threading.CancellationToken.None"/>.
+            </summary>
+        </member>
+        <member name="P:MathWorks.MATLAB.Types.RunOptions.Output">
+            <summary>
+            The <see cref="T:System.IO.TextWriter"/> to which MATLAB output is written.
+            Defaults to <see cref="P:System.Console.Out"/>.
+            </summary>
+        </member>
+        <member name="P:MathWorks.MATLAB.Types.RunOptions.Error">
+            <summary>
+            The <see cref="T:System.IO.TextWriter"/> to which MATLAB errors are written.
+            Defaults to <see cref="P:System.Console.Error"/>.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.ArrayFactoryHandle.ArrayFactoryCreate">
+            <summary>
+            Allocates unmanaged memory and returns it wrapped in a <see cref="T:MathWorks.MATLAB.Types.SafeHandles.ArrayFactoryHandle"/>.
+            The resulting instance can be used to allocate unmanaged MATLAB arrays.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.ArrayFactoryHandle.CreateEmptyArray(MathWorks.MATLAB.Types.ArrayType)">
+            <summary>
+            Creates a 0x0 MATLAB array with the specified data type.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.ArrayFactoryHandle.CreateArrayWithDims(System.UInt64[],MathWorks.MATLAB.Types.ArrayType)">
+            <summary>
+            Allocates an empty MATLAB array with the given dimensions and datatype.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.ArrayFactoryHandle.CreateArrayWithDimsAndData(System.UInt64[],MathWorks.MATLAB.Types.ArrayType,System.IntPtr,System.UInt64)">
+            <summary>
+            Allocates a MATLAB array and populates it with the data pointed to by <paramref name="data"/>.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.ArrayFactoryHandle.CreateScalarArray(MathWorks.MATLAB.Types.ArrayType,System.IntPtr)">
+            <summary>
+            Allocates a 1x1 MATLAB array with the given value.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.ArrayFactoryHandle.CreateScalarString(System.String)">
+            <summary>
+            Allocates a 1x1 MATLAB string with the given value.
+            A value of <b>null</b> will create a <b>&lt;missing&gt;</b> string.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.ArrayFactoryHandle.CreateScalarObject(MathWorks.MATLAB.Types.SafeHandles.ObjectImplHandle)">
+            <summary>
+            Creates a new <see cref="T:MathWorks.MATLAB.Types.SafeHandles.ArrayImplHandle"/> containing only the element <paramref name="obj"/>.
+            To retrieve a <see cref="T:MathWorks.MATLAB.Types.SafeHandles.ObjectImplHandle"/>, see <see cref="M:MathWorks.MATLAB.Types.SafeHandles.ReferenceImplHandle.GetObjectValue"/>.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.ArrayFactoryHandle.CreateScalarMissingString">
+            <summary>
+            Allocates a 1x1 MATLAB string with the value of <b>&lt;missing&gt;</b>.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.ArrayFactoryHandle.CreateCharArray(System.Char[])">
+            <summary>
+            Allocates a 1xN char array and populates it with the given characters.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.ArrayFactoryHandle.CreateStructArray(System.UInt64[],MathWorks.MATLAB.Types.SafeHandles.NameListImplHandle)">
+            <summary>
+            Create a struct array, given the dimensions and the names of the fields.
+            </summary>
+            <param name="dims">The dimensions of the array.</param>
+            <param name="names">The names of the fields, must be valid MATLAB identifiers.</param>
+            <see cref="M:MathWorks.MATLAB.Types.SafeHandles.ArrayFactoryHandle.CreateFieldNames(System.Collections.Generic.IEnumerable{System.String})"/>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.ArrayFactoryHandle.CreateNames(System.UInt64)">
+            <summary>
+            Create a list of names via the MDA, given the number of names.
+            </summary>
+            <param name="numberOfNames">The number of names in the list.</param>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.ArrayFactoryHandle.CreateEnumArray(System.UInt64[],System.String)">
+            <summary>
+            Create an enum array given the name of the class, the dimensions of the array, and the length of the name of the class name.
+            </summary>
+            <param name="dims">The dimensions of the array to create.</param>
+            <param name="className">The name of the class</param>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.ArrayFactoryHandle.CreateEnumArrayWithEnums(System.UInt64[],System.String,MathWorks.MATLAB.Types.SafeHandles.NameListImplHandle)">
+            <summary>
+            Create an enum array given the name of the class, the dimensions of the array, and the length of the name of the class name.
+            </summary>
+            <param name="dims">The dimensions of the array to create.</param>
+            <param name="className">The name of the class</param>
+            <param name="names">The names of the enumerations.</param>
+        </member>
+        <member name="T:MathWorks.MATLAB.Types.SafeHandles.ArrayImplHandle">
+            <summary>
+            Managed wrapper around a pointer to an unmanaged MATLAB array (ArrayImpl*).
+            Allows you to interface with the MATLAB array and ensures unmanaged memory is freed.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.ArrayImplHandle.FromPtr(System.IntPtr)">
+            <summary>
+            Creates a handle to the arrayImpl* returned by P/Invoke APIs.
+            </summary>
+        </member>
+        <member name="P:MathWorks.MATLAB.Types.SafeHandles.ArrayImplHandle.IsVector">
+            <summary>
+            Returns <b>true</b> if the <see cref="T:MathWorks.MATLAB.Types.SafeHandles.ArrayImplHandle"/> is 1xN or
+            Mx1, false otherwise. If <see cref="P:MathWorks.MATLAB.Types.SafeHandles.ArrayImplHandle.IsScalar"/> is true, see cref="IsVector"/> 
+            is also true.
+            No heap allocation is made.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.ArrayImplHandle.CreateReference(System.UInt64)">
+            <summary>
+            Creates a reference to the specified index of this <see cref="T:MathWorks.MATLAB.Types.SafeHandles.ArrayImplHandle"/>.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.ArrayImplHandle.CreateReference(System.Int64)">
+            <inheritdoc cref="M:MathWorks.MATLAB.Types.SafeHandles.ArrayImplHandle.CreateReference(System.UInt64)"/>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.ArrayImplHandle.CreateReference(System.Int64[])">
+            <summary>
+            Creates a reference to the specified index of this <see cref="T:MathWorks.MATLAB.Types.SafeHandles.ArrayImplHandle"/>.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.ArrayImplHandle.GetStructNumFields">
+            <summary>
+            Get the number of fields in a struct array.
+            </summary>
+            <returns>The number of fields in a struct array.</returns>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.ArrayImplHandle.StructArrayBeginId">
+            <summary>
+            Get the iterator to the first element in the struct array.
+            </summary>
+            <returns>An iterator to the first element in the struct array.</returns>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.ArrayImplHandle.StructArrayEndId">
+            <summary>
+            Get the iterator to the last element in the struct array.
+            </summary>
+            <returns>An iterator to the last element in the struct array.</returns>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.ArrayImplHandle.ArrayBegin(System.Boolean)">
+            <summary>
+            Gets an <see cref="T:MathWorks.MATLAB.Types.SafeHandles.IteratorImplHandle"/> to the first element of the array.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.ArrayImplHandle.ArrayEnd(System.Boolean)">
+            <summary>
+            Gets an <see cref="T:MathWorks.MATLAB.Types.SafeHandles.IteratorImplHandle"/> to the last element of the array.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.ArrayImplHandle.EnumGetClass">
+            <summary>
+            Get the name of the enum class.  Not sure of the difference between this and get EnumArrayGetClass.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.ArrayImplHandle.EnumArrayGetClass">
+            <summary>
+            Get the name of the enum class.  Not sure of the difference between this and get EnumGetClass.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.FieldIDHandle.field_id_get_string(MathWorks.MATLAB.Types.SafeHandles.FieldIDHandle,System.IntPtr@,System.UInt64@)">
+            <summary>
+            Get a field name from a MATLAB Struct.
+            </summary>
+            <param name="impl">The handle to a MATLAB Struct</param>
+            <param name="str">An output parameter, the name of the struct field.</param>
+            <param name="len">The length of str.</param>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.FieldIDHandle.field_id_destroy_impl(System.IntPtr)">
+            <summary>
+            Free a RefCountedImpl.
+            </summary>
+            <param name="impl">The RefCountedImpl to free.</param>
+        </member>
+        <member name="T:MathWorks.MATLAB.Types.SafeHandles.ForwardIteratorImplHandle">
+            <summary>
+            Wrapper for native API to get an iterator to struct fields
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.ForwardIteratorImplHandle.ReleaseHandle">
+            <summary>
+            Destroy the iterator.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.ForwardIteratorImplHandle.GetFieldID">
+            <summary>
+            Get a reference to the current element that the iterator is pointing at.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.ForwardIteratorImplHandle.ForwardIteratorPlusPlus">
+            <summary>
+            Increment the iterator.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.ForwardIteratorImplHandle.forward_iterator_destroy_impl(System.IntPtr)">
+            <summary>
+            Destroy the forwarditeratorimpl
+            </summary>
+            <param name="intPtr">The forwarditeratorimpl to destroy</param>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.ForwardIteratorImplHandle.forward_iterator_get_ref(MathWorks.MATLAB.Types.SafeHandles.ForwardIteratorImplHandle,MathWorks.MATLAB.Types.SafeHandles.FieldIDHandle@)">
+            <summary>
+            Get a reference to the current item the forwarditeratorimpl is pointing at.
+            </summary>
+            <param name="forwardIteratorImplHandle">The forwarditeratorimpl to query.</param>
+            <param name="refCountedImpl">An output parameter, the reference to the current item the iterator is pointing at.</param>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.ForwardIteratorImplHandle.forward_iterator_plus_plus(MathWorks.MATLAB.Types.SafeHandles.ForwardIteratorImplHandle)">
+            <summary>
+            Move the iterator forward by one item.
+            </summary>
+            <param name="forwardIteratorImplHandle">The iterator to increment</param>
+        </member>
+        <member name="T:MathWorks.MATLAB.Types.SafeHandles.IteratorImplHandle">
+            <summary>
+            Managed wrapper around a pointer to an unmanaged MATLAB array (IteratorImpl*).
+            Use this class within a `using` block.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.IteratorImplHandle.Clone">
+            <summary>
+            Creates a new <see cref="T:MathWorks.MATLAB.Types.SafeHandles.IteratorImplHandle"/> pointing to the same
+            element as this <see cref="T:MathWorks.MATLAB.Types.SafeHandles.IteratorImplHandle"/>. Use the instance
+            within a `using` block.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.IteratorImplHandle.Equals(MathWorks.MATLAB.Types.SafeHandles.IteratorImplHandle)">
+            <summary>
+            Tests if two <see cref="T:MathWorks.MATLAB.Types.SafeHandles.IteratorImplHandle"/>s point to the same
+            element of the same MATLAB array.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.IteratorImplHandle.DistanceTo(MathWorks.MATLAB.Types.SafeHandles.IteratorImplHandle)">
+            <summary>
+            The number of increments that can be done on this <see cref="T:MathWorks.MATLAB.Types.SafeHandles.IteratorImplHandle"/>
+            until it points to the same element as <paramref name="other"/>.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.IteratorImplHandle.Decrement(System.UInt64)">
+            <summary>
+            Moves the iterator backwards by <paramref name="count"/> elements.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.IteratorImplHandle.Increment(System.UInt64)">
+            <summary>
+            Moves the iterator forward by <paramref name="count"/> elements.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.IteratorImplHandle.GetPodValue">
+            <summary>
+            Returns the underlying pointer to the currently-pointed-to
+            element in the MATLAB array.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.IteratorImplHandle.op_Addition(MathWorks.MATLAB.Types.SafeHandles.IteratorImplHandle,System.UInt64)">
+            <summary>
+            Alias for <see cref="M:MathWorks.MATLAB.Types.SafeHandles.IteratorImplHandle.Increment(System.UInt64)"/>.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.IteratorImplHandle.op_Subtraction(MathWorks.MATLAB.Types.SafeHandles.IteratorImplHandle,System.UInt64)">
+            <summary>
+            Alias for <see cref="M:MathWorks.MATLAB.Types.SafeHandles.IteratorImplHandle.Decrement(System.UInt64)"/>.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.IteratorImplHandle.op_Subtraction(MathWorks.MATLAB.Types.SafeHandles.IteratorImplHandle,MathWorks.MATLAB.Types.SafeHandles.IteratorImplHandle)">
+            <summary>
+            Alias for <see cref="M:MathWorks.MATLAB.Types.SafeHandles.IteratorImplHandle.DistanceTo(MathWorks.MATLAB.Types.SafeHandles.IteratorImplHandle)"/>.
+            </summary>
+        </member>
+        <member name="T:MathWorks.MATLAB.Types.SafeHandles.ManagedArrayHandle">
+            <summary>
+            Allows pinning a managed <see cref="T:System.Array"/> to the heap and
+            exposing a pointer to its first element. Use this class within
+            a `using` block to minimize performance impacts.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.ManagedArrayHandle.#ctor(System.Array)">
+            <summary>
+            Pins the <paramref name="array"/> to the heap until
+            the <see cref="T:MathWorks.MATLAB.Types.SafeHandles.ManagedArrayHandle"/> is disposed. Use
+            the instance within a `using` block.
+            </summary>
+        </member>
+        <member name="T:MathWorks.MATLAB.Types.SafeHandles.MatlabHandle">
+            <summary>
+            Handle to a shared MATLAB engine session.
+            Wraps a simple <see cref="T:System.UInt64"/>.
+            </summary>
+        </member>
+        <member name="T:MathWorks.MATLAB.Types.SafeHandles.NameListImplHandle">
+            <summary>
+            A wrapper for the unmanaged APIs for interacting with struct fields.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.NameListImplHandle.names_destroy_impl(System.IntPtr)">
+            <summary>
+            Free a NamesListImpl.
+            </summary>
+            <param name="nameListImplHandle">The NamesListImpl to free</param>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.NameListImplHandle.add_name(MathWorks.MATLAB.Types.SafeHandles.NameListImplHandle,System.IntPtr,System.UInt64)">
+            <summary>
+            Add a name to a NamesListImpl
+            </summary>
+            <param name="nameListImplHandle">The NamesListImpl to add the name to.</param>
+            <param name="str">The name to add.</param>
+            <param name="len">The length of the name.</param>
+        </member>
+        <member name="T:MathWorks.MATLAB.Types.SafeHandles.ReferenceImplHandle">
+            <summary>
+            Managed wrapper around a pointer to an unmanaged MATLAB array (ReferenceImpl*).
+            Provides get-and-set access to elements in the array.
+            </summary>
+            <remarks>
+            From what I can tell, a ReferenceImpl is like a view into another MATLAB array.
+            It doesn't own the array itself, but is allowed to access its elements.
+            </remarks>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.ReferenceImplHandle.AddIndex(System.UInt64)">
+            <summary>
+            Adds an additional dimension to the current index held by this <see cref="T:MathWorks.MATLAB.Types.SafeHandles.ReferenceImplHandle"/>.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.ReferenceImplHandle.AddIndex(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.ReferenceImplHandle.SetArrayValue(MathWorks.MATLAB.Types.SafeHandles.ArrayImplHandle)">
+            <summary>
+            Sets the underlying data of the element pointed to by this <see cref="T:MathWorks.MATLAB.Types.SafeHandles.ReferenceImplHandle"/>.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.ReferenceImplHandle.SetStringValue(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.ReferenceImplHandle.SetPodValue(System.IntPtr)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.ReferenceImplHandle.GetStringValue">
+            <summary>
+            Returns the MATLAB <see cref="T:System.String"/> pointed to by this <see cref="T:MathWorks.MATLAB.Types.SafeHandles.ReferenceImplHandle"/>.
+            Works with the MATLAB_STRING type.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.ReferenceImplHandle.GetCharArrayValue">
+            <summary>
+            Returns the MATLAB <see cref="T:System.String"/> pointed to by this <see cref="T:MathWorks.MATLAB.Types.SafeHandles.ReferenceImplHandle"/>.
+            Works with the CHAR type.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.ReferenceImplHandle.GetReferenceValue(System.Boolean)">
+            <summary>
+            Returns the <see cref="T:MathWorks.MATLAB.Types.SafeHandles.ReferenceImplHandle"/> which is pointed to by
+            this <see cref="T:MathWorks.MATLAB.Types.SafeHandles.ReferenceImplHandle"/>.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.ReferenceImplHandle.GetArrayValue">
+            <summary>
+            Returns the <see cref="T:MathWorks.MATLAB.Types.SafeHandles.ArrayImplHandle"/> which is pointed to by
+            this <see cref="T:MathWorks.MATLAB.Types.SafeHandles.ReferenceImplHandle"/>. Useful for accessing the
+            elements of a cell array.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.ReferenceImplHandle.GetPodValue">
+            <summary>
+            Returns a pointer to the data of the current element pointed to by this
+            <see cref="T:MathWorks.MATLAB.Types.SafeHandles.ReferenceImplHandle"/>.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.ReferenceImplHandle.GetObjectValue">
+            <summary>
+            Returns a <see cref="T:MathWorks.MATLAB.Types.SafeHandles.ObjectImplHandle"/> which is
+            pointed to by this <see cref="T:MathWorks.MATLAB.Types.SafeHandles.ReferenceImplHandle"/>.
+            Useful for accessing individual elements of an object array.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.ReferenceImplHandle.SetObjectValue(MathWorks.MATLAB.Types.SafeHandles.ObjectImplHandle)">
+            <summary>
+            Sets an element in a MATLAB object array to the provided value.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.ReferenceImplHandle.ArrayBegin(System.Boolean)">
+            <summary>
+            Gets an <see cref="T:MathWorks.MATLAB.Types.SafeHandles.IteratorImplHandle"/> pointing to the start of
+            the referenced array.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.ReferenceImplHandle.ArrayEnd(System.Boolean)">
+            <summary>
+            Gets an <see cref="T:MathWorks.MATLAB.Types.SafeHandles.IteratorImplHandle"/> pointing to the end of
+            the referenced array.
+            </summary>
+        </member>
+        <member name="T:MathWorks.MATLAB.Types.SafeHandles.SafeDataArrayHandle">
+            <summary>
+            Managed wrapper around unmanaged memory allocated by the MATLAB Data Array API.
+            Ensures unmanaged memory is freed, regardless of how the process terminates.
+            </summary>
+            <remarks>
+            Debug asserts are used throughout subclasses because they are all internal-only
+            and should therefore be called correctly. This is preferred to throwing normal 
+            exceptions, as these checks may have a negative performance impact.
+            </remarks>
+            <seealso ref="https://docs.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.safehandle#why-safehandle"/>
+            <seealso ref="https://stackoverflow.com/questions/47934248/cannot-pass-safehandle-instance-in-releasehandle-to-native-method"/>
+        </member>
+        <member name="M:MathWorks.MATLAB.Types.SafeHandles.SafeDataArrayHandle.ThrowOnException(MathWorks.MATLAB.Types.DataArrayExceptionType)">
+            <summary>
+            Throws an exception if <paramref name="exception"/> has a value
+            other than <see cref="F:MathWorks.MATLAB.Types.DataArrayExceptionType.NoException"/>.
+            </summary>
+        </member>
+    </members>
+</doc>

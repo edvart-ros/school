@@ -1,0 +1,12 @@
+{ 
+  "bundle.symbolic_name" : MW_BUNDLE_SYMBOLIC_NAME, 
+  "mw" : 
+  { 
+      "mex" : 
+      {
+          "apiVersion" : MW_MX_API_VERSION,
+          "release" : "R2024a",
+          "threadpoolSafe" : MW_CPPMEX_THREADPOOL_SAFE
+      }
+  } 
+}

@@ -1,0 +1,108 @@
+
+This readme is intended for the CPP Engine.
+
+Copyright 2023 The MathWorks, Inc.
+
+
+                               README
+
+The files in this directory are:
+1. cppEngineVariadicFeval
+2. cppEngineVariadicFevalAsync
+
+The cppEngineVariadicFeval file is a sample C++ program that uses the MATLAB Engine to call MATLAB functions and print the returned output. It uses the feval function to invoke MATLAB functions.
+The cppEngineVariadicFevalAsync file is a sample C++ program that uses the MATLAB Engine to call MATLAB function asynchronously and prints the returned output. It uses the fevalAsync function to invoke MATLAB functions.
+
+You can use the following commands to build and test the examples:
+In the below example, replace <matlabroot> with the value returned by the "matlabroot" command in MATLAB.
+
+On Windows:
+-----------
+Compile:
+mex -client engine cppEngineVariadicFeval.cpp
+mex -client engine cppEngineVariadicFevalAsync.cpp
+
+To run the example applications, you need to add the following path to the PATH variable:
+<matlabroot>\extern\bin\win64
+
+Change path each time you run the application
+To set the run-time library path from the Windows command prompt, type the following command. Set the path every time you open the Windows Command Processor.
+
+set PATH=<matlabroot>\extern\bin\win64;%PATH%
+
+To permanently change path
+
+Windows 10:
+In Search, search for and then select: System (Control Panel)
+Click Advanced system settings > Advanced tab.
+Click Environment Variables.
+Under System variables, select Path and click Edit.
+Modify Path by inserting <matlabroot>\extern\bin\win64; at the beginning of the Variable value.
+Click Ok to close the dialog boxes, then close the Control Panel dialog box.
+
+Run:
+Navigate to the cppEngineVariadicFeval executable and execute the program
+cd <matlabroot>/extern/examples/engines/cpp/
+./cppEngineVariadicFeval
+
+Navigate to the cppEngineVariadicFevalAsync executable and execute the program
+cd <matlabroot>/extern/examples/engines/cpp/
+./cppEngineVariadicFevalAsync
+
+
+On Mac:
+-----------
+Compile:
+mex -client engine cppEngineVariadicFeval.cpp
+mex -client engine cppEngineVariadicFevalAsync.cpp
+
+To run the example applications, add <matlabroot>/extern/bin/<macos> to DYLD_LIBRARY_PATH variable. Replace <macos> with either maca64 for macOS with Apple silicon or maci64 for macOS with Intel. 
+
+To add "<matlabroot>/extern/bin/<macos>" to the DYLD_LIBRARY_PATH variable:
+C Shell
+setenv DYLD_LIBRARY_PATH <matlabroot>/extern/bin/<macos>
+
+You can place these commands in a startup script, such as ~/.cshrc.
+Bourne Shell
+DYLD_LIBRARY_PATH=<matlabroot>/extern/bin/<macos>:$DYLD_LIBRARY_PATH
+export DYLD_LIBRARY_PATH
+
+Run:
+Navigate to the cppEngineVariadicFeval executable and execute the program
+cd <matlabroot>/extern/examples/engines/cpp/
+./cppEngineVariadicFeval
+
+Navigate to the cppEngineVariadicFevalAsync executable and execute the program
+cd <matlabroot>/extern/examples/engines/cpp/
+./cppEngineVariadicFevalAsync
+
+
+On Linux:
+-----------
+Compile:
+mex -client engine cppEngineVariadicFeval.cpp
+mex -client engine cppEngineVariadicFevalAsync.cpp
+
+In order run the example applications, add the following paths to the LD_LIBRARY_PATH variable:
+<matlabroot>/sys/os/glnxa64
+<matlabroot>/extern/bin/glnxa64
+
+C Shell
+setenv LD_LIBRARY_PATH <matlabroot>/extern/bin/glnxa64:<matlabroot>/sys/os/glnxa64
+
+You can place these commands in a startup script, such as ~/.cshrc.
+
+Bourne Shell
+LD_LIBRARY_PATH=<matlabroot>/extern/bin/glnxa64:<matlabroot>/sys/os/glnxa64:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH
+
+You can place these commands in a startup script such as ~/.profile.
+
+Run:
+Navigate to the cppEngineVariadicFeval executable and execute the program
+cd <matlabroot>/extern/examples/engines/cpp/
+./cppEngineVariadicFeval
+
+Navigate to the cppEngineVariadicFevalAsync executable and execute the program
+cd <matlabroot>/extern/examples/engines/cpp/
+./cppEngineVariadicFevalAsync

@@ -1,0 +1,6 @@
+# This is the symbol export map file for Mac OS X.  The file specifies
+# that only the mexFunction and mexfilerequiredapiversion symbols should have global scope,
+# and that all others should be local.
+# Copyright 2002-2021 The MathWorks, Inc.
+_mexFunction
+_mexfilerequiredapiversion

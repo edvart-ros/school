@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MathWorks.MATLAB.Engine</name>
+    </assembly>
+    <members>
+        <member name="F:MathWorks.MATLAB.Engine.Impl.CppEngineApi.LibMatlabEngine">
+            <summary>
+            Name of the library used to interface with MATLAB engine.
+            Extension is excluded for cross-platform support -
+            the CLR can resolve that depending on the platform.
+            </summary>
+        </member>
+        <member name="T:MathWorks.MATLAB.Engine.Impl.MATLABEngineFactoryImpl">
+            <summary>
+            Instantiates <see cref="T:MathWorks.MATLAB.Engine.Impl.MATLABEngineImpl"/>.
+            </summary>
+        </member>
+        <member name="T:MathWorks.MATLAB.Engine.MATLABEngine">
+            <summary>
+            Entry point to MATLAB Engine API for .NET.
+            </summary>
+        </member>
+        <member name="P:MathWorks.MATLAB.Engine.MATLABEngine.Workspace">
+            <summary>
+            The MATLAB base workspace associated with this MATLAB engine 
+            or runtime instance.
+            </summary>
+        </member>
+        <member name="M:MathWorks.MATLAB.Engine.MATLABEngine.TerminateEngineClient">
+            <summary>
+            Release all MATLAB® engine resources during runtime when you no 
+            longer need the MATLAB engine in your application program.
+            </summary>
+            <remarks>
+            Programs cannot start a new MATLAB engine or connect to a shared MATLAB 
+            session after calling <see cref="M:MathWorks.MATLAB.Engine.MATLABEngine.TerminateEngineClient"/>.
+            </remarks>
+        </member>
+        <member name="M:MathWorks.MATLAB.Engine.MATLABEngine.StartMATLAB">
+            <summary>
+            Start MATLAB® in a separate process with optional MATLAB startup options.
+            </summary>
+            <returns>A <see cref="T:MathWorks.MATLAB.Engine.MATLABEngine"/> instance.</returns>
+            <exception cref="T:MathWorks.MATLAB.Exceptions.MATLABNotAvailableException"/>
+        </member>
+        <member name="M:MathWorks.MATLAB.Engine.MATLABEngine.StartMATLAB(System.String[])">
+            <inheritdoc cref="M:MathWorks.MATLAB.Engine.MATLABEngine.StartMATLAB"/>
+            <param name="options">
+            Options used to start MATLAB. You can specify multiple startup options.
+            </param>
+        </member>
+        <member name="M:MathWorks.MATLAB.Engine.MATLABEngine.StartMATLABAsync">
+            <inheritdoc cref="M:MathWorks.MATLAB.Engine.MATLABEngine.StartMATLAB"/>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1"/> which completes with a <see cref="T:MathWorks.MATLAB.Engine.MATLABEngine"/> instance.</returns>
+        </member>
+        <member name="M:MathWorks.MATLAB.Engine.MATLABEngine.StartMATLABAsync(System.String[])">
+            <inheritdoc cref="M:MathWorks.MATLAB.Engine.MATLABEngine.StartMATLAB(System.String[])"/>
+            <inheritdoc cref="M:MathWorks.MATLAB.Engine.MATLABEngine.StartMATLABAsync"/>
+        </member>
+        <member name="M:MathWorks.MATLAB.Engine.MATLABEngine.StartMATLABAsync(System.Threading.CancellationToken)">
+            <inheritdoc cref="M:MathWorks.MATLAB.Engine.MATLABEngine.StartMATLABAsync"/>
+            <param name="cancelToken">The cancellation token to cancel the operation.</param>
+        </member>
+        <member name="M:MathWorks.MATLAB.Engine.MATLABEngine.StartMATLABAsync(System.String[],System.Threading.CancellationToken)">
+            <inheritdoc cref="M:MathWorks.MATLAB.Engine.MATLABEngine.StartMATLABAsync(System.String[])"/>
+            <inheritdoc cref="M:MathWorks.MATLAB.Engine.MATLABEngine.StartMATLABAsync(System.Threading.CancellationToken)"/>
+        </member>
+        <member name="M:MathWorks.MATLAB.Engine.MATLABEngine.FindMATLAB">
+            <summary>
+            Find all shared MATLAB® sessions on the local machine.
+            </summary>
+            <returns>
+            An array of the names of all shared MATLAB sessions on the local machine, 
+            or an empty array if no shared MATLAB sessions are available
+            </returns>
+        </member>
+        <member name="M:MathWorks.MATLAB.Engine.MATLABEngine.FindMATLABAsync">
+            <inheritdoc cref="M:MathWorks.MATLAB.Engine.MATLABEngine.FindMATLAB"/>
+            <returns>
+            A <see cref="T:System.Threading.Tasks.Task`1"/> which completes with an array of the names 
+            of shared MATLAB sessions.
+            </returns>
+        </member>
+        <member name="M:MathWorks.MATLAB.Engine.MATLABEngine.FindMATLABAsync(System.Threading.CancellationToken)">
+            <inheritdoc cref="M:MathWorks.MATLAB.Engine.MATLABEngine.FindMATLABAsync"/>
+            <param name="cancelToken">The cancellation token to cancel the operation.</param>
+        </member>
+        <member name="M:MathWorks.MATLAB.Engine.MATLABEngine.ConnectMATLAB">
+            <summary>
+            Connect to a shared MATLAB® session on the local machine.
+            </summary>
+            <remarks>
+            <list type="bullet">
+            <item>If you specify the name of a shared MATLAB session, but the engine cannot find a session with that name, the engine throws an exception.</item>
+            <item>If you do not specify a name and there is no shared MATLAB session available, the engine starts a new shared MATLAB session.The MATLAB desktop is not started.</item>
+            <item>If you do not specify a name and there are shared MATLAB sessions available, the engine connects to the first available session.</item>
+            </list>
+            </remarks>
+            <returns>A <see cref="T:MathWorks.MATLAB.Engine.MATLABEngine"/> instance.</returns>
+            <exception cref="T:MathWorks.MATLAB.Exceptions.MATLABNotAvailableException"/>
+        </member>
+        <member name="M:MathWorks.MATLAB.Engine.MATLABEngine.ConnectMATLAB(System.String)">
+            <inheritdoc cref="M:MathWorks.MATLAB.Engine.MATLABEngine.ConnectMATLAB"/>
+            <param name="name">Name of the shared MATLAB session.</param>
+        </member>
+        <member name="M:MathWorks.MATLAB.Engine.MATLABEngine.ConnectMATLABAsync">
+            <inheritdoc cref="M:MathWorks.MATLAB.Engine.MATLABEngine.ConnectMATLAB"/>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1"/> which completes with a <see cref="T:MathWorks.MATLAB.Engine.MATLABEngine"/> instance.</returns>
+        </member>
+        <member name="M:MathWorks.MATLAB.Engine.MATLABEngine.ConnectMATLABAsync(System.Threading.CancellationToken)">
+            <inheritdoc cref="M:MathWorks.MATLAB.Engine.MATLABEngine.ConnectMATLABAsync"/>
+            <param name="cancelToken">The cancellation token to cancel the operation.</param>
+        </member>
+        <member name="M:MathWorks.MATLAB.Engine.MATLABEngine.ConnectMATLABAsync(System.String)">
+            <inheritdoc cref="M:MathWorks.MATLAB.Engine.MATLABEngine.ConnectMATLAB(System.String)"/>
+            <inheritdoc cref="M:MathWorks.MATLAB.Engine.MATLABEngine.ConnectMATLABAsync"/>
+        </member>
+        <member name="M:MathWorks.MATLAB.Engine.MATLABEngine.ConnectMATLABAsync(System.String,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:MathWorks.MATLAB.Engine.MATLABEngine.ConnectMATLABAsync(System.String)"/>
+            <inheritdoc cref="M:MathWorks.MATLAB.Engine.MATLABEngine.ConnectMATLABAsync(System.Threading.CancellationToken)"/>
+        </member>
+        <member name="T:MathWorks.MATLAB.Engine.MATLABEngineFactory">
+            <summary>
+            Used for instantiating implementations of <see cref="T:MathWorks.MATLAB.Engine.MATLABEngine"/>.
+            </summary>
+        </member>
+    </members>
+</doc>

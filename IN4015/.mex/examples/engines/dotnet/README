@@ -1,0 +1,62 @@
+﻿Copyright 2023 The MathWorks, Inc.
+
+These instructions are for compiling and running a C# application
+that uses MATLAB Engine API for .NET from the command line.
+
+Projects can also be opened in your favorite IDE.
+
+In these instructions, replace <matlabroot> with the value returned 
+by the matlabroot function in MATLAB.
+
+
+## PREREQUISITES ##
+
+1. Install the latest .NET SDK from https://dotnet.microsoft.com/download
+   The full .NET SDK is required, not just the .NET Runtime.
+
+2. Set up environment variables to point to your MATLAB installation.
+   Use these environment variable names and paths:
+
+Windows:
+  PATH
+  <matlabroot>\extern\bin\win64
+
+Apple Intel:
+  DYLD_LIBRARY_PATH
+  <matlabroot>/extern/bin/maci64
+
+Apple Silicon:
+  DYLD_LIBRARY_PATH
+  <matlabroot>/extern/bin/maca64
+
+Linux:
+  LD_LIBRARY_PATH
+  <matlabroot>/extern/bin/glnxa64:<matlabroot>/sys/os/glnxa64
+  
+3. Copy the example files to a working directory for example "C:\work".  
+   The files that need to be copied are as follows:
+
+Windows:
+   dotnet_engine_examples.sln
+   all files in the console and gui directories
+   
+Apple macOS and Linux:
+   dotnet_engine_examples.sln
+   all files in the console directory
+
+## COMPILING ##
+
+Use the 'dotnet build' command to compile all example projects.
+  $> cd C:\work
+  $> dotnet build /p:matlabroot=<matlabroot>
+
+
+## RUNNING ##
+
+Use the 'dotnet run' command to execute a particular example project.
+To run the console example:
+  $> dotnet run --no-build --project console
+  
+  
+To run the gui example (Windows only):
+  $> dotnet run --no-build --project gui

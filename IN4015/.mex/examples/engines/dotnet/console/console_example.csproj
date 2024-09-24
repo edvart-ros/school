@@ -1,0 +1,34 @@
+<!-- Copyright 2022 The MathWorks, Inc. -->
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- Set the matlabroot property by editing the csproj file, or by
+         passing /p:matlabroot=<matlabroot> to the build command. -->
+  
+    <OutputType>Exe</OutputType>
+    <OutDir>bin</OutDir>
+    <TargetFramework>net6.0</TargetFramework>
+    <AssemblyName>MathWorks.MATLAB.Engine.ConsoleExample</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Enables interop between .NET and MATLAB -->
+    <Reference Include="MathWorks.MATLAB.Types" >
+      <HintPath>$(matlabroot)/extern/dotnet/netstandard2.0/MathWorks.MATLAB.Types.dll</HintPath>
+    </Reference>
+    
+    <!-- Provides an interface to MATLAB Engine API -->
+    <Reference Include="MathWorks.MATLAB.Engine" >
+      <HintPath>$(matlabroot)/extern/dotnet/netstandard2.0/MathWorks.MATLAB.Engine.dll</HintPath>
+    </Reference>
+    
+    <!-- Enables using the 'dynamic' keyword -->
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+  </ItemGroup>
+  
+  <Target Name="ValidateMatlabroot" BeforeTargets="BeforeBuild" >
+    <Error Text="matlabroot is not defined. Add /p:matlabroot=&lt;matlabroot&gt; to the build command." 
+           Condition="'$(matlabroot)' == ''" />
+  </Target>
+
+</Project>

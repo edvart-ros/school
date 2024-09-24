@@ -1,0 +1,6 @@
+# This is the symbol export map file for Absoft Pro Fortran MEX-files with
+# Fortran gateways.  The file specifies that only the mexfunction_
+# symbol should have global scope, and that all others should be
+# local.
+# Copyright 2002-2021 The MathWorks, Inc.
+_mexfunction_
