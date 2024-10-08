@@ -78,24 +78,6 @@ radial_distance = linspace(0,110e-3,N_depth);    % Depth (or radial distance)
 delays = zeros(N_transmits, N_depth, N_elements);% Buffer for the calculated delays
 img = zeros(N_depth,N_transmits);                % Buffer for the final image
 
-% Pseudocode for beambased phased array beamformer
-% for each transmit
-    % calculate the transmit part and the receive part of the delay for
-    % every receive channel. Remember to calculate the delays in seconds
-    % not distance, and remember to subtract the offset for each transmit
-    % event to get a correct time zero convention.
-
-    %for each receive channel
-        % beamform by interpolating (using interp1) into the calculated
-        % delays for each radial dept sample for each transmit
-        % the call to interp1 might look like this:
-        % interp1(sample_time, rfData(:,r,t)', delays(t,:,r))'
-            % where r is the current receive channel and t is the current transmit
-            % you allready have sample_time and rfData, but need to calculate
-            % the propriate delays
-            
-%Normalize the image to maximum value = 1
-
 r = radial_distance;
 c0 = 1540;
 for i = 1:N_transmits
@@ -136,7 +118,7 @@ caxis([-60 0])
 ax(2) = gca();
 title('USTB image')
 
-%We only show differences larger than -100 dB. Differences smaller than
+% We only show differences larger than -100 dB. Differences smaller than
 % -90 dB can be ignored, since they most likely originate from  numerical
 % differences resulting from minor differences in implementation.
 subplot(133)
