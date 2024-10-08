@@ -6,6 +6,7 @@ class DataSet():
         data = np.loadtxt(path)
         data_training = []
         data_testing = []
+        print(data)
         num_objects = data.shape[0]
         i = 0
 
