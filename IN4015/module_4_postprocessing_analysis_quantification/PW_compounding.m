@@ -14,7 +14,7 @@ close all;
 
 % data location
 url='http://ustb.no/datasets/';      % if not found data will be downloaded from here
-filename='PICMUS_experiment_resolution_distortion.uff';
+%filename='PICMUS_experiment_resolution_distortion.uff';
 filename='PICMUS_simulation_contrast_speckle.uff';
 
 % checks if the data is in your data path, and downloads it otherwise.
@@ -32,6 +32,7 @@ scan.z_axis = linspace(5e-3,50e-3,512)';
 
 %% Set up the delay-and-sum beamforming using the midprocess
 das = midprocess.das()
+das.code = 'matlab'
 das.scan = scan;
 das.channel_data = channel_data;
 das.dimension = dimension.receive();
@@ -70,14 +71,14 @@ coherent_compounding = zeros(scan.N_x_axis,scan.N_z_axis);
 incoherent_compounding = zeros(scan.N_x_axis,scan.N_z_axis);
 mix_compounding = zeros(scan.N_x_axis,scan.N_z_axis);
 
-% Extract single image
 single_image = db(abs(image_matrix(:,:,37)./max(max(image_matrix(:,:,37)))));
 
-% Create coherent compounded image
-coherent_compounding;           % <---- Implement coherent compounding here
+coherent_compounding = sum(image_matrix, 3);
+coherent_compounding = db(abs(coherent_compounding./max(max(coherent_compounding))));
 
-% Create incoherent compounded image
-incoherent_compounding;         % <---- Implement incoherent compounding here
+incoherent_compounding = sum(abs(image_matrix), 3);
+incoherent_compounding = db(abs(incoherent_compounding./max(max(incoherent_compounding))));
+
 
 %% Verify your implementation of coherent and incoherent compounding
 % Using changing the dimension to "both" to get coherent compounding
@@ -107,9 +108,47 @@ incoherent_compounding_USTB = b_data_incoherent.get_image();
 % difference between the images and tolerate a pixel difference of
 % e.g. abs(img_1_dB - img_2_dB) < 10^-4
 
+max(max(abs(coherent_compounding - coherent_compounding_USTB)))
+max(max(abs(incoherent_compounding - incoherent_compounding_USTB)))
+
+
 %% Compare your implementation of coherent compounding to the USTB
+figure;
+subplot(131);
+imagesc(coherent_compounding);
+colorbar
+title('Manual coherent compounding');
+
+subplot(132);
+imagesc(coherent_compounding_USTB);
+colorbar
+title('USTB coherent compounding')
+
+subplot(133);
+diff = abs(coherent_compounding-coherent_compounding_USTB);
+imagesc(diff);
+colorbar
+title('The difference');
+colormap gray
 
 %% Compare your implementation of incoherent compounding to the USTB
+figure;
+subplot(131);
+imagesc(incoherent_compounding);
+colorbar
+title('Manual incoherent compounding');
+
+subplot(132);
+imagesc(incoherent_compounding_USTB);
+colorbar
+title('USTB incoherent compounding')
+
+subplot(133);
+diff = abs(incoherent_compounding-incoherent_compounding_USTB);
+imagesc(diff);
+colorbar
+title('The difference');
+colormap gray
 
 %% Exercise Part III : Implement a mix of coherent and incoherent compounding
 % We can also do something inbetween full coherent and incoherent
@@ -125,8 +164,11 @@ angles_second_sum = round(channel_data.N_waves/2)+1:channel_data.N_waves;
 % Before they both are combined incoherently. Thus you have done mix
 % compounding. You can put the results in the mix_compounding variable:
 
-mix_compounding; % <---- Implement coherent compounding here. You might need more than one line
-
+mix_compounding; % <---- Implement mixed compounding here. You might need more than one line
+coherent_part = sum(image_matrix(:, :, angles_first_sum), 3);
+incoherent_part = sum(abs(image_matrix(:, :, angles_second_sum)), 3);
+mix_compounding_signal = abs(coherent_part) + abs(incoherent_part);
+mix_compounding = db(mix_compounding_signal./max(max(mix_compounding_signal)));
 
 figure()
 subplot(221)
@@ -143,7 +185,7 @@ colormap gray; axis image;colorbar;  caxis([-60 0])
 title('Incoherent Compounding')
 subplot(224)
 imagesc(scan.x_axis*1000, scan.z_axis*1000, mix_compounding)
-colormap gray; axis image;colorbar;  caxis([-60 0])
+colormap gray; axis image;colorbar;  caxis([-60 0]);
 title('Mix Compounding')
     
 %% Exercise Part IV : Compare the resoluting resolution from coherent, incoherent and mix compounding
@@ -178,6 +220,8 @@ end
 % The implementation to measure the CR is allready provided, but you have to calculate the CNR.
 %
 % You need to make sure that you are running this on the contrast dataset.
+close all;
+
 
 if contains(filename,'contrast')
     xc_ROI = -0;
@@ -229,7 +273,7 @@ if contains(filename,'contrast')
     single_image_signal = single_image_signal(:);
     coherent_compounding_signal = b_data_coherent.data;
     incoherent_compounding_signal = b_data_incoherent.data;
-    %mix_compounding_signal = mix_compounding_signal(:);
+    mix_compounding_signal = mix_compounding_signal(:);
     
     % Estimate the mean and the background of all images
     mean_background_single = mean(abs(single_image_signal(idx_background(:))).^2)
@@ -241,23 +285,58 @@ if contains(filename,'contrast')
     mean_background_incoherent = mean(abs(incoherent_compounding_signal(idx_background(:))).^2)
     mean_ROI_incoherent = mean(abs(incoherent_compounding_signal(idx_ROI(:))).^2)
     
-    %mean_background_mix = mean(abs(mix_compounding_signal(idx_background(:))).^2)
-    %mean_ROI_mix = mean(abs(mix_compounding_signal(idx_ROI(:))).^2)
+    mean_background_mix = mean(abs(mix_compounding_signal(idx_background(:))).^2)
+    mean_ROI_mix = mean(abs(mix_compounding_signal(idx_ROI(:))).^2)
     
     % Calculate Contrast Ratio
     CR_single = 10*log10(mean_ROI_single/mean_background_single)
     CR_coherent = 10*log10(mean_ROI_coherent/mean_background_coherent)
     CR_incoherent = 10*log10(mean_ROI_incoherent/mean_background_incoherent)
-    %CR_mix = 10*log10(mean_ROI_mix/mean_background_mix)
+    CR_mix = 10*log10(mean_ROI_mix/mean_background_mix)
 
     figure
-    bar([CR_single CR_coherent CR_incoherent])% CR_mix])
+    bar([CR_single CR_coherent CR_incoherent CR_mix])
     set(gca, 'YDir','reverse')
-    xticklabels({'Single Image','Coherent Compounded','Incoherent Compounding'})%, 'Mix Compounding'})
+    xticklabels({'Single Image','Coherent Compounded','Incoherent Compounding', 'Mix Compounding'})
     ylabel('CR [dB]')
     
     
-    % You need to calculate the CNR
+    % Calculating CNR
+    power_background_single = abs(single_image_signal(idx_background(:))).^2;
+    power_ROI_single = abs(single_image_signal(idx_ROI(:))).^2;
+    var_background_single = std(power_background_single);
+    var_ROI_single = std(power_ROI_single);
     
+    power_background_coherent = abs(coherent_compounding_signal(idx_background(:))).^2;
+    power_ROI_coherent = abs(coherent_compounding_signal(idx_ROI(:))).^2;
+    var_background_coherent = std(power_background_coherent);
+    var_ROI_coherent = std(power_ROI_coherent);
     
+    power_background_incoherent = abs(incoherent_compounding_signal(idx_background(:))).^2;
+    power_ROI_incoherent = abs(incoherent_compounding_signal(idx_ROI(:))).^2;
+    var_background_incoherent = std(power_background_incoherent);
+    var_ROI_incoherent = std(power_ROI_incoherent);
+    
+    power_background_mix = abs(mix_compounding_signal(idx_background(:))).^2;
+    power_ROI_mix = abs(mix_compounding_signal(idx_ROI(:))).^2;
+    var_background_mix = std(power_background_mix);
+    var_ROI_mix = std(power_ROI_mix);
+    
+    % Calculate CNR
+    CNR_single     = abs(mean_ROI_single - mean_background_single) / sqrt(var_ROI_single^2 + var_background_single^2);
+    CNR_coherent   = abs(mean_ROI_coherent - mean_background_coherent) / sqrt(var_ROI_coherent^2 + var_background_coherent^2);
+    CNR_incoherent = abs(mean_ROI_incoherent - mean_background_incoherent) / sqrt(var_ROI_incoherent^2 + var_background_incoherent^2);
+    CNR_mix        = abs(mean_ROI_mix - mean_background_mix) / sqrt(var_ROI_mix^2 + var_background_mix^2);
+    
+    %CNR_single = 10*log10(CNR_single);
+    %CNR_coherent = 10*log10(CNR_coherent);
+    %CNR_incoherent = 10*log10(CNR_incoherent);
+    %CNR_mix = 10*log10(CNR_mix);
+
+
+    figure
+    bar([CNR_single, CNR_coherent, CNR_incoherent, CNR_mix])
+    xticklabels({'Single Image', 'Coherent Compounded', 'Incoherent Compounding', 'Mix Compounding'})
+    ylabel('CNR')
+
 end
