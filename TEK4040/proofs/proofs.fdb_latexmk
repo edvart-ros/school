@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1733850451.35268 "/Users/punk/programming/School/TEK4040/proofs/proofs.tex" "proofs.pdf" "proofs" 1733850452.09195 0
-  "/Users/punk/programming/School/TEK4040/proofs/proofs.tex" 1733850451.1185 11746 5f3ca52a36b096fd7d7001647aa58ada ""
+["pdflatex"] 1733852493.96678 "/Users/punk/programming/School/TEK4040/proofs/proofs.tex" "proofs.pdf" "proofs" 1733852494.69191 0
+  "/Users/punk/programming/School/TEK4040/proofs/proofs.tex" 1733852493.72818 13037 851185128c3818bab6edc9ea3b19cce8 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/jknappen/ec/ectt1000.tfm" 1136768653 1536 06717a2b50de47d4087ac0e6cd759455 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
@@ -64,8 +64,8 @@
   "/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1728375862.03187 5467645 128b85b7cde5f5edc5cb7f1dd7ff8736 ""
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1728375779 8221428 f35700a2119662899117c3fc245f7252 ""
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
-  "proofs.aux" 1733850452.02299 112 a02d5e4ac731e0ceb5f2c7e8018f0da1 "pdflatex"
-  "proofs.tex" 1733850451.1185 11746 5f3ca52a36b096fd7d7001647aa58ada ""
+  "proofs.aux" 1733852494.62237 112 55aaa85c68d70b2ec4d72a0d2542ed5e "pdflatex"
+  "proofs.tex" 1733852493.72818 13037 851185128c3818bab6edc9ea3b19cce8 ""
   (generated)
   "proofs.aux"
   "proofs.log"

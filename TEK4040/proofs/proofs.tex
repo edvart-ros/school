@@ -283,5 +283,25 @@ $$\q{y} = \q{\omega}\times\q{x} \algeq \aq{y}^p = S(\aq{\omega}^p)\aq{x}^p$$
     \end{proof}
 \end{theorem}
 
+\begin{theorem}
+    The derivative of a vector $\q{r}$ which is fixed in the rotating frame $\mathcal{F}_{\mathcal{V}}^p(t)$, seen from the (fixed) frame $\mathcal{F}_{\mathcal{V}}^q$ is
+    $$\dot{\q{r}}^q = \q{\omega}_p^q\times\q{r}$$
+\end{theorem}
+\begin{proof}
+    The vector $\q{r}$ can be expressed in the p-frame as
+    $$\q{r} = \sum_{i=1}^3r_i^p\q{p}_i$$
+    Where $r_i^p$ are constant, as the vector is fixed in the p-frame. Taking the time-derivative seen from the q-frame:
+    $$\dot{\q{r}}^q = \sum_{i=3}^3r_i^p\dot{\q{p}}_i^q$$
+    From previously, we have that $\dot{\q{p}}_i = \q{\omega}_p^{q} \times \q{p}_i$, where $\q{\omega}_p^q$ is the angular velocity of the the p-frame relative to the q-frame. Inserting this and using the fact that "$\q{\omega} \times$" is linear gives
+    \begin{align*}
+        \dot{\q{r}}^q &= \sum_{i=1}^3r_i^p(\q{\omega}_q^p\times\dot{\q{p}}_i^q) \\
+        &=\q{\omega}_p^q \times\left( \sum_{i=1}^nr_i^p\q{p}_i^q \right)\\
+        &= \q{\omega}_p^q \times \q{r}
+    \end{align*}
+\end{proof}
 
+\begin{theorem}
+    The derivative of a vector $\q{r}$ which is fixed in the rotating frame $\mathcal{F}_{\mathcal{V}}^p(t)$, seen from the (fixed) frame $\mathcal{F}_{\mathcal{V}}^q$ is
+    $$\dot{\q{r}}^q = \q{\omega}_p^q\times\q{r}$$
+\end{theorem}
 \end{document}
