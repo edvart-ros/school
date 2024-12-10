@@ -1,0 +1,287 @@
+\documentclass{article}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{cancel}
+\usepackage{soul}
+
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{prop}{Problem}
+
+\begin{document}
+
+\newcommand{\q}{\vec}
+\newcommand{\aq}{\underline}
+\newcommand{\qs}[1]{\vec{#1}^*}
+\newcommand{\nsum}[1]{\sum_{#1=1}^n}
+\newcommand\algeq{\stackrel{\mathclap{\normalfont\mbox{alg.}}}{\iff}}
+
+
+
+\begin{theorem}
+    Given a basis $\{\q{p}_i\}$ with dual basis $\{\qs{p}_i\}$, any vector $\q{r}$ can be written as:
+    $$\vec{r} = \sum_{i=1}^n r_i^p\q{p}_i, \quad r_i^p = \left<\q{r}, \qs{p}_i\right>$$
+\end{theorem}
+\begin{proof}
+    Since $\{\q{p}_i\}$ forms a basis, we can write $\q{r}$ as:
+    $$\q{r} = \sum_{i=1}^nr_i^p\q{p}_i$$
+    Now, consider the inner product of an arbitrary vector $\q{r}$ and $\qs{p}_i$:
+    \begin{align*}
+        \left<\q{r}, \qs{p}_i\right> &= \left<\sum_{j=1}^nr_j^p\q{p}_j, \qs{p}_i\right>  \\
+        &= \sum_{j=1}^nr_j^p\left<\q{p}_j, \qs{p}_i \right> \\
+        &= \nsum{j}r_j^p \delta_{ij} = r_i^p
+    \end{align*}
+    Thus:
+    \begin{equation*}
+        r_i^p = \left<\q{r}, \qs{p}_i\right>
+    \end{equation*}
+\end{proof}
+
+\begin{theorem}
+Given the basis $\{\q{p}_i\}$ for the vector space $\mathcal{V}$, any linear operator
+$\mathbb{A}$ can be represented in $\mathbb{R}^{n\times n}$ as the matrix $A^p$:
+$$[\mathbb{A}]^p = A^p = \left[\left<\mathbb{A}\q{p}_j, \qs{p_i}\right>\right]$$
+$$\q{y} = \mathbb{A}\q{x} \algeq \aq{y}^p = A^p\aq{x}^p$$
+\end{theorem}
+
+\begin{proof}
+    Let $\mathbb{A}$ be a linear operator on $\mathcal{V}$, with the basis $\{\q{p}_i\}$ and dual basis
+    $\{\qs{p}_i\}$. Then, let $\q{y} = \mathbb{A}\q{x}$
+    Again, we express $\q{y}$ and $\q{x}$ in the p-frame:
+    $$\q{y} = \nsum{i}y_i^p\q{p}_i, \quad \q{x} = \nsum{i}x_i^p\q{p}_i$$ 
+    From theorem 1, we have:
+    \begin{align*}
+        y_i^p &= \left<\q{y}, \qs{p}_i\right> \\
+        &= \left<\mathbb{A}\q{x}, \qs{p}_i\right> \\
+    \end{align*}
+    Expressing $\q{x}$ in the p-frame and using the linearity of $\mathbb{A}$, we get
+    \begin{align*}
+        &= \left< \mathbb{A}\nsum{j}x_j^p\q{p}_j, \qs{p}_i\right> \\
+        &= \left< \nsum{j}x_j^p\mathbb{A}\q{p}_j, \qs{p}_i\right> \\
+        y_i^p&= \nsum{j}x_j^p\left<\mathbb{A}\q{p}_j, \qs{p}_i\right>
+    \end{align*}
+    This can be written as the following matrix equation
+    $$\begin{bmatrix}
+        y_1 \\ \vdots \\ y_n
+    \end{bmatrix} = 
+    \begin{bmatrix}
+        \left< \mathbb{A}\q{p}_1, \qs{p}_1\right>&  \hdots  & \left< \mathbb{A}\q{p}_n, \qs{p}_1\right> \\
+        \vdots  & \ddots & \vdots \\
+        \left< \mathbb{A}\q{p}_n, \qs{p}_1\right> & \hdots & \left< \mathbb{A}\q{p}_n, \qs{p}_n\right>
+    \end{bmatrix}
+    \begin{bmatrix}
+        x_1^p \\ \vdots \\ x_n^p
+    \end{bmatrix}$$
+    or:
+    $$\aq{y}^p = A^p\aq{x}^p$$ 
+    where
+    $$ A^p = \left[\left<\mathbb{A}\q{p}_j, \qs{p_i}\right>\right]$$
+\end{proof}
+
+
+\begin{prop}
+    Find the matrix representation of the $" \q{\omega} \times "$ operator in the orthonormal frame $\{\q{p}_i\}$
+\end{prop}
+\subsubsection*{Sol.}
+To find the matrix representation we use Theorem 2:
+\begin{align*}
+    A^p &= \left[\left<\mathbb{A}\q{p}_j, \qs{p_i}\right>\right] \\
+    &=  \left[\left<\q{\omega} \times \q{p}_j, \qs{p_i}\right>\right]
+\end{align*}
+First we consider $\omega \times \q{p}_j$ by expressing $\omega$ in the p-frame:
+\begin{align*}
+    \q{\omega} \times \q{p}_j &= \left(\nsum{i}\omega_i^p\q{p}_i\right) \times \qs{p}_j  \\
+    &= (\omega_1^p\q{p}_1 + \omega_2^p\q{p}_2 + \omega_3^p + \q{p}_3) \times \qs{p}_j \\
+\end{align*}
+Since the p-frame is orthonormal, $\qs{p}_i = \q{p}_i$:
+\begin{align*}
+    \q{\omega} \times \q{p_j} = (\omega_1^p\q{p}_1 + \omega_2^p\q{p}_2 + \omega_3^p\q{p}_3) \times \q{p}_j 
+\end{align*}
+This cross-product can be computed directly for $j = 1,2,3$:
+\begin{align*}
+    &\q{\omega}\times\q{p}_1 = -\omega_2^p\q{p}_3  + \omega_3^p\q{p}_2 \\
+    &\q{\omega}\times\q{p}_2 = \omega_1^p\q{p}_3  - \omega_3^p\q{p}_1 \\
+    &\q{\omega}\times\q{p}_3 = -\omega_1^p\q{p}_2  + \omega_2^p\q{p}_1 
+\end{align*}
+
+Then, computing the entries of the matrix $A^p$:
+
+\begin{align*}
+    &a_{ij} = \left<\q{\omega}\times\q{p}_j, \q{p}_i\right>\\
+    &A^p = \begin{bmatrix}
+        0 & -\omega_3^p & \omega_2^p \\
+        \omega_3^p & 0 & -\omega_1^p \\
+        -\omega_2^p &\omega_1^p& 0
+    \end{bmatrix}
+\end{align*}
+This matrix is skew-symmetric and is defined by the coordinates of $\aq{\omega}^p$, so we denote the matrix representation of "$\q{\omega} \times$" as
+$$\left[\q{\omega} \times \right]^p = S(\aq{\omega}^p)$$
+$$\q{y} = \q{\omega}\times\q{x} \algeq \aq{y}^p = S(\aq{\omega}^p)\aq{x}^p$$
+
+
+\begin{theorem}
+    Given two bases $\{\q{p}_i\}$ and $\{\q{q}_i\}$ in $\mathcal{V}$. Let $\q{r}$ and $\mathbb{A}$ be a vector and a linear operator in $\mathcal{V}$, respectively.
+    We then have the following relations between matrix representations in the two bases/frames:
+    $$\aq{r}^q = C_p^q\aq{r}^p \quad \text{where} \quad C_p^q = \left[\left< \q{p}_j, \qs{q}_i\right>\right]$$
+    $$\aq{r}^p = C_q^p\aq{r}^q \quad \text{where} \quad C_q^p = \left[\left< \q{q}_j, \qs{p}_i\right>\right]$$
+    \vspace{0cm}
+    $$ A^q = C_p^qA^pC_q^p \quad \text{and} \quad A^p = C_q^pA^qC_p^q$$
+\end{theorem}
+\begin{proof}
+    Let $\aq{r}^q = C_p^q\aq{r}^p$ where $\aq{r}^q = \begin{bmatrix}
+        r_1^q & \hdots &r_n^q
+    \end{bmatrix}^T$ and $\aq{r}^p = \begin{bmatrix}
+        r_1^p & \hdots \ r_n^p
+    \end{bmatrix}^T$. Then,
+    \begin{align*}
+        r_i^q = \left<\q{r}, \qs{q}_i\right> = \nsum{j}C_{ij}r_j^p \\
+    \end{align*}
+    Rearranging and expressing $\q{r}$ in the p-frame:
+    \begin{align*}
+        \nsum{j}C_{ij}r_j^p = \left< \nsum{j}r_j\q{p}_j, \qs{q}_i \right>\\
+    \end{align*}
+    By linearity of the inner product, we get
+    \begin{align*}
+        \nsum{j}&C_{ij}r_j^p = \nsum{j}\left<\q{p}_j, \qs{q}_i\right>r_j^p \\
+        \implies &C_{ij} = \left<\q{p}_j, \qs{q}_i\right> \\
+    \end{align*}
+    thus \begin{align*}
+        \quad C_p^q &= \left[\left<\q{p}_j, \qs{q}_i\right>\right]
+    \end{align*}
+    The same procedure can be used to find $C_q^p$.
+
+    Now, consider the equation $\q{y} = \mathbb{A}\q{x}$ where $\mathbb{A}$ is some linear operator on $\mathcal{V}$. We can coordinatize this equation in the p and q-frames:
+    $$\aq{y}^q = A^q\aq{x}^q \quad \text{and} \quad \aq{y}^p = A^p\aq{x}^p$$
+    From above, we also have the following relations
+    $$\aq{y}^q = C_p^q\aq{y}^p \quad \text{and} \quad \aq{y}^p = C_q^p\aq{y}^q$$
+    By substitution, we derive:
+    \begin{align*}
+        A^q\aq{x}^q &= \aq{y}^q \\
+        &= C_q^p\aq{y}^p \\
+        &= C_q^pA^p\aq{x}^p \\
+        &= C_q^pA^pC_q^p\aq{x}^q
+    \end{align*}
+    And thus
+    $$A^q = C_q^pA^pC_q^p$$
+    Again, the same procedure can be used to show that $A^p = C_p^qA^qC_p^q$
+\end{proof}
+
+\begin{theorem}
+    The Direction Cosine Matrix (DCM) between two frames whose bases are orthonormal, $R_p^q$, is an orthonormal matrix:
+    $$(R_p^q)^{-1} = (R_p^q)^T$$
+\end{theorem}
+
+\begin{proof}
+    From the definition of the DCM:
+    \begin{equation*}
+        R_p^q = \begin{bmatrix}{\aq{p}_1}^q & \aq{p}_2^q & \aq{p}_3^q\end{bmatrix}
+    \end{equation*}
+    \begin{equation*}
+        (R_p^q)^T = \begin{bmatrix}
+            (\aq{p}_1^q)^T\\
+            (\aq{p}_2^q)^T\\
+            (\aq{p}_3^q)^T\\
+        \end{bmatrix}
+    \end{equation*}
+    Then, we compute $(R_p^q)^TR_p^q$
+    \begin{align*}
+        (R_p^q)^TR_p^q &= \left[\left<\aq{p}_i^q, \aq{p}_j^q\right>\right] = \left[\delta_{ij}\right] \\
+        &= I
+    \end{align*}
+    thus, $(R_p^q)^{-1} = (R_p^q)^T$
+\end{proof}
+
+\begin{theorem}
+    The matrix representation of the rotation operator $\mathbb{R}_{ab}$ in two frames $\mathcal{F}_{\mathcal{V}}^a$ and $\mathcal{F}_{\mathcal{V}}^b$ is
+    $$\left[\mathbb{R}_{ab}\right]^a = \left[\mathbb{R}_{ab}\right]^b = C_b^a$$
+\end{theorem}
+
+\begin{proof}
+    \begin{align*}
+        \left[\mathbb{R}_{ab}\right]^a = R_{ab}^a &= \left[\left<\mathbb{R}_{ab}\q{a}_i, \qs{a}_j\right>\right] \\
+        &=\left[\left<\q{b}_i, \qs{a}_j\right>\right]\\
+        &= C_b^a\\
+    \end{align*}
+    Using the "similarity transformation" of the $R_{ab}^a$:
+    \begin{align*}
+        R_{ab}^b &= C_a^bR_{ab}^aC_b^a \\
+        &= C_a^b C_b^a C_b^a \\
+        &= C_b^a
+    \end{align*}
+    And thus $R_{ab}^b = R_{ab}^a$
+
+\end{proof}
+
+\begin{theorem}
+    The derivative of the rotation matrix $R_p^q$ is given by
+    \begin{align*}
+        \dot{R}_p^q &= S(\aq{w}_p^{qq})R_p^q \\
+        &= R_p^qS(\aq{w}_p^{qp})
+    \end{align*}
+    \begin{proof}
+        Since $R_p^q$ is a rotation matrix (orthonormal), we have
+        \begin{align*}
+            &(R_p^q)^{-1} = (R_p^q)^T \\
+            \implies &R_p^q(R_p^q)^T = I
+        \end{align*}
+        Taking the derivative on both sides and applying the product rule gives
+        \begin{align*}
+            \dot{R_p^q}(R_p^q)^T + R_p^q(\dot{R_p^q})^T = 0
+        \end{align*}
+        We now define the matrix $S = \dot{R_p^q}(R_p^q)^T$ such that
+        \begin{align*}
+            S + S^T = 0
+        \end{align*}
+        This means S is some skew-symmetric matrix, with form
+        \begin{align*}
+            S(\aq{w}) = \begin{bmatrix}
+                0 & -\omega_3 &\omega_2 \\ 
+                \omega_3 &  0 & -\omega_1 \\
+                -\omega_2 & \omega_1 & 0
+            \end{bmatrix}
+        \end{align*}
+        From our definition, we have that $\dot{R_p^q} = S(\aq{\omega})R_p^q$. Finally, we want to find an interpretation of the vector $\aq{\omega}$. Writing this equation out by interpreting $R_p^q$ as an attitude matrix gives
+        $$\begin{bmatrix} \dot{\aq{p}}_1^q & \dot{\aq{p}}_2^q & \dot{\aq{p}}_3^q\end{bmatrix} = S(\aq{\omega})\begin{bmatrix} {\aq{p}}_1^q & {\aq{p}}_2^q & {\aq{p}}_3^q\end{bmatrix}$$
+        \begin{align*}
+            \dot{\aq{p}}_i^q &= S(\aq{\omega})\aq{p}_i^q\\
+            &= \aq{\omega} \times \aq{p}_i^q
+        \end{align*}
+        We therefore interpret $\aq{\omega}$ as the angular velocity of of the p-frame seen from the q-frame, and represented in the q-frame:
+        $$\dot{R_p^q} = S(\aq{\omega}_p^{qq})R_p^q$$
+        Since $S(\aq{\omega}_p^{qq})$ is a linear operator, we can apply express it using the similarity transform:
+        \begin{align*}
+            S(\aq{\omega}_p^{qq}) &= \left[\q{\omega}_p^q\times\right]^q\\
+            &= R_p^q\left[\q{\omega}_p^q\times\right]^pR_q^p \\
+            &= R_p^qS(\aq{\omega}_p^{qp})R_q^p
+        \end{align*}
+        Inserting this into the equation above gives
+        \begin{align*}
+            \dot{R_p^q} &= S(\aq{\omega}_p^{qq})R_p^q \\
+            &= R_p^qS(\aq{\omega}_p^{qp})\cancel{R_q^pR_p^q} \\
+            &= R_p^qS(\aq{\omega}_p^{qp})
+        \end{align*}
+    \end{proof}
+\end{theorem}
+
+\begin{theorem}
+    The derivative of the DCM $C_p^q$ is given by
+    \begin{align*}
+        \dot{C}_p^q &= S(\aq{w}_p^{qq})C_p^q \\
+        &= C_p^qS(\aq{w}_p^{qp})
+    \end{align*}
+    \begin{proof}
+        $$C_p^q = \begin{bmatrix} {\aq{p}}_1^q & {\aq{p}}_2^q & {\aq{p}}_3^q\end{bmatrix}$$
+        $$\dot{C_p^q} = \begin{bmatrix} {\dot{\aq{p}}}_1^q & \dot{\aq{p}}_2^q & \dot{\aq{p}}_3^q\end{bmatrix}$$
+        Here we use the result from the proof above
+        $$\dot{\aq{p}}_i^q = S(\aq{\omega}_p^{qq})\aq{p}_i$$
+        $$\dot{C_p^q} = \begin{bmatrix} S(\aq{\omega}_p^{qq}){\aq{p}}_1^q & S(\aq{\omega}_p^{qq})\aq{p}_2^q & S(\aq{\omega}_p^{qq})\aq{p}_3^q\end{bmatrix}$$
+        $$\dot{C_p^q} = S(\aq{\omega}_p^{qq})C_p^q$$
+        Using the similarity transform we also get $\dot{C_p^q} = C_p^qS(\aq{\omega}_p^{qp})$
+    \end{proof}
+\end{theorem}
+
+
+\end{document}
