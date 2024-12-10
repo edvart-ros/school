@@ -301,7 +301,17 @@ $$\q{y} = \q{\omega}\times\q{x} \algeq \aq{y}^p = S(\aq{\omega}^p)\aq{x}^p$$
 \end{proof}
 
 \begin{theorem}
-    The derivative of a vector $\q{r}$ which is fixed in the rotating frame $\mathcal{F}_{\mathcal{V}}^p(t)$, seen from the (fixed) frame $\mathcal{F}_{\mathcal{V}}^q$ is
+    The derivative of a vector $\q{r}(t)$ which is time-varying in a rotating frame $\mathcal{F}_{\mathcal{V}}^p(t)$, seen from the (fixed) frame $\mathcal{F}_{\mathcal{V}}^q$ is
     $$\dot{\q{r}}^q = \q{\omega}_p^q\times\q{r}$$
+    \begin{proof}
+        We again coordinatize $\q{r}(t)$, now with time-varying coordinates $r_i^p(t)$:
+        $$\q{r}(t) = \sum_{i=1}^nr_i^p(t)\q{p}_i(t)$$
+        Taking the derivative seen from the q-frame and applying the product rule gives
+        \begin{align*}
+            \dot{\q{r}}^q &= \sum_{i=1}^{3}{\dot{r_i}^{pp}}\q{p}_i + \sum_{i=1}^{3}r_i^p\dot{\q{p}}_i^q \\
+            \dot{\q{r}}^q &= \dot{\q{r}}^p + \q{\omega}_p^q\times\q{r}
+        \end{align*}
+
+    \end{proof}
 \end{theorem}
 \end{document}
