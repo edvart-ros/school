@@ -348,7 +348,37 @@ $$\q{y} = \q{\omega}\times\q{x} \algeq \aq{y}^p = S(\aq{\omega}^p)\aq{x}^p$$
         &=\ddot{\q{r}}_{qp}^{qq} + \ddot{\q{\rho}}^{pp}+\q{\omega}_p^q\times\dot{\q{\rho}}^p + \dot{\q{\omega}}_p^{qq}\times\q{\rho} + \q{\omega}_p^q\times\dot{\q{\rho}}^p + \q{\omega}_p^q\times(\q{\omega}_p^q\times\q{\rho}) \\
         \ddot{\q{r}}^{qq}&= \underline{\ddot{\q{r}}_{qp}^{qq} + \ddot{\q{\rho}}^{pp} + \dot{\q{\omega}}_p^{qq}\times\q{\rho} + \q{\omega}_p^q\times \left(\q{\omega}_p^q\times\q{\rho}\right)+2\q{\omega}_p^q\times \dot{\q{\rho}}^p}
     \end{align*}
-    
-    
 \end{proof}
+
+\begin{theorem}
+    Assume Newton's 3rd law holds for the force between particles, i.e $\q{f}_{ij} = -\q{f}_{ji}$.
+    Then, the total external force $\q{F}$ is equal to the total mass $M$ times the acceleration of the 
+    center of mass $\q{a}_c^{\mathbf{i}}$ seen from the inertial frame:
+    $$\q{F} = M\frac{{}^{\mathbf{i}}d{}^{\mathbf{i}}d}{dt^2}\q{r}_c = M\q{a}_c^{\mathbf{i}}$$
+    \begin{proof}
+        The center of mass is defined as
+        $$\q{r}_c = \frac{1}{M}\nsum{i}m_i\q{r}_i$$
+        Where $m_i$ is the mass of particle $i$ with position vector $\q{r}_i$. The acceleration of the center of mass in the inertial frame $\q{a}_c^{\mathbf{i}}$ is found by differentiating twice
+        \begin{align*}
+            \q{a}_c^{\mathbf{i}} &= \ddot{\q{r}}_c^{\mathbf{ii}} \\
+            &= \frac{1}{M}\nsum{i}m_i\ddot{\q{r}}_i^{\mathbf{ii}}\\
+            \implies M\q{a}_c^{\mathbf{i}} &=\nsum{i}m_i{\q{a}}_i^{\mathbf{i}}
+        \end{align*}
+        Newton's law for a single particle states
+        $$m_i\q{a}_i^{\mathbf{i}} = \q{F}_i$$
+        Where $\q{F}_i$ is the total force on the particle, i.e is the sum of internal and external forces on the particle
+        $$\q{F}_i = \q{f}_i + \nsum{j}\q{f}_{ji} = m_i\q{a}_i^{\mathbf{i}}$$
+        Substituting this into the n-particle equation gives
+        $$ M\q{a}_c^{\mathbf{i}} = \nsum{i}\left(\q{f}_i+\nsum{j}f_{ji}\right)$$
+        Since $f_{ij} + f_{ji} = 0$, the contribution from internal forces is zero, and the sum reduces to
+        \begin{align*}
+            M\q{a}_c^{\mathbf{i}} &= \nsum{i}\q{f}_i \\
+            M\q{a}_c^{\mathbf{i}} &= \q{F}
+        \end{align*}
+    \end{proof}
+\end{theorem}
+
+\begin{theorem}
+    
+\end{theorem}
 \end{document}
