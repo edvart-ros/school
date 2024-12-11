@@ -379,6 +379,114 @@ $$\q{y} = \q{\omega}\times\q{x} \algeq \aq{y}^p = S(\aq{\omega}^p)\aq{x}^p$$
 \end{theorem}
 
 \begin{theorem}
+    Let A be an arbitrary point in the interial frame $\mathbf{i}$ ($\q{r} = \q{r}_A+\q{\rho}_A$). Given a particle P acted on by a force F, the relation between the 
+    torque and angular momentum about A is
+    $$\q{n}_A = \dot{\q{h}}_A^{\mathbf{i}} + \rho_A\times(m\ddot{\q{r}}_A^{\mathbf{i}})$$
+    Where the torque about A $\q{n}_A$ and the angular momentum about A in the inertial frame ${\q{h}}_A^{\mathbf{i}}$ are defined as:
+    $$\q{n}_A = \q{\rho}_A\times\q{F}$$
+    $${\q{h}}_A^{\mathbf{i}} = \q{\rho}_A\times(m\dot{\q{\rho}}_A^{\mathbf{i}})$$
+    If $\rho_A\times(m\ddot{\q{r}}_A^{\mathbf{i}}) = 0$, i.e when either:
+    \begin{enumerate}
+        \item $\ddot{\q{r}}_A^{\mathbf{i}} = \q{0}$: A has constant velocity in the inertial frame (or not moving)
+        \item $\q{\rho} \parallel \ddot{\q{r}}_A^{\mathbf{i}}$: A is accelerating towards/away from particle P
+    \end{enumerate}
+    Then the law of angular momentum can be written as
+    $$\q{n}_A = \dot{\q{h}}_A^{\mathbf{i}}$$
+    \begin{proof}
+        Let $\q{r}$ be the position vector of the particle P, $\q{r}_A$ the vector for the arbitrary point A and $\q{\rho}$ from A to P. 
+        $$\q{r} = \q{r}_A + \q{\rho}$$
+        The torque on the particle P about a point A is defined as
+        \begin{align*}
+            \q{n}_A &= \q{\rho}_A\times\q{F} \\
+            &=\q{\rho}_A\times (m\ddot{\q{r}}^{\mathbf{i}}) \\
+            &=\q{\rho}_A\times \left(m\frac{{}^{\mathbf{i}}d^2}{dt^2}\left(\q{r}_A + \q{\rho}\right)\right) \\
+            &= \q{\rho}_A \times (m\ddot{\q{r}}_A^{\mathbf{i}}) + \rho \times (m\ddot{\q{\rho}}^{\mathbf{i}})
+        \end{align*}
+        To complete the proof, we need to show that $\rho \times (m\ddot{\q{\rho}}^{\mathbf{i}})$ is equal to $\dot{\q{h}}_A^{\mathbf{i}}$.
+        Using the definition of $\dot{\q{h}}_A^{\mathbf{i}}$ and computing its derivative:
+        \begin{align*}
+            {\q{h}}_A^{\mathbf{i}} &= \q{\rho}_A\times(m\dot{\q{\rho}}_A^{\mathbf{i}})\\
+            \dot{\q{h}}_A^{\mathbf{i}} &= \dot{\q{\rho}}_A^{\mathbf{i}}\times(m\dot{\q{\rho}}_A^{\mathbf{i}}) + \q{\rho}_A\times(m\ddot{\q{\rho}}_A^{\mathbf{i}})
+        \end{align*}
+        The first term is $\q{0}$, since $\angle\dot{\q{\rho}}_A^{\mathbf{i}}\dot{\q{\rho}}_A^{\mathbf{i}} = 0$. So we have
+        $$\dot{\q{h}}_A^{\mathbf{i}} = \q{\rho}_A\times(m\ddot{\q{\rho}}_A^{\mathbf{i}})$$
+        Finally, inserting this into the equation for $\q{n}_A$ gives
+        $$\q{n}_A = \dot{\q{h}}_A^{\mathbf{i}} +  \rho \times (m\ddot{\q{\rho}}^{\mathbf{i}})$$
+    \end{proof}
+\end{theorem}
+
+\begin{theorem}
+    Given a system of n particles where particle $i$ is acted on by an external force $\q{F}_i$ and the force $\q{f}_{ij}$ from particle j for which
+    Newton's 3rd law is assumed to hold. In addition, these forces $\q{f}_{ji} = -\q{f}_{ij}$ are central forces (point along $\q{r}_i-\q{r}_j$).
     
+    Then, for an arbitrary point A in the inertial frame $\mathbf{i}$, we have the following relations
+    $$\q{n}_A = \dot{\q{h}}_A^{\mathbf{i}} + \nsum{i}m_i\q{\rho}_{Ai}\times\ddot{\q{r}}_A^{\mathbf{i}}$$
+    Where the total torque and total angular momentum about A are:
+    $$\q{n}_A = \nsum{i}\q{\rho}_{Ai}\times{\q{F}}_i$$
+    $$\q{h}_A = \nsum{i}m_i\q{\rho}_{Ai}\times\dot{\q{\rho}}_{Ai}^{\mathbf{i}}$$
+    If $\nsum{i}m_i\q{\rho}_{Ai}\times\ddot{\q{r}}_A^{\mathbf{i}} = 0$, i.e when either:
+    \begin{enumerate}
+        \item $\nsum{i}m_i\q{\rho}_{Ai} = \q{0}$: A is placed in the center of mass
+        \item $\ddot{\q{r}}_A^{\mathbf{i}} = \q{0}$: A has constant velocity
+        \item $\q{\rho}_{Ai} \parallel \ddot{\q{r}}_A^{\mathbf{i}}$: A is accelerating towards the center of mass
+    \end{enumerate}
+    Then, the law of angular momentum for the n-particle system can be written as
+    $$\q{n}_A = \dot{\q{h}}_A^{\mathbf{i}}$$
+    \begin{proof}
+        We have the following relation for the position vectors:
+        $$\q{r}_i = \q{r}_A+\q{\rho}_i$$
+
+        \subsubsection*{Total torque}
+        The torque on a single particle $i$ about $A$ is defined as:
+        \begin{align*}
+            \q{n}_{Ai} = \q{\rho}_{Ai}\times\left(F_i + \nsum{i}\q{f}_{ij}\right)
+        \end{align*}
+        The total torque $\q{n}_A$ is therefore
+        $$\q{n}_A = \nsum{i}\left(\q{\rho}_{Ai}\times \q{F}_i + \nsum{j}\q{\rho}_{Ai}\times\q{f}_{ij}\right)$$
+        We want to show that all torque contributions from internal forces cancel out.
+        For any term (i, j) in the sum, there is an associated term (j, i). We want to show that the internal torques from these terms cancel out:
+        \begin{align*}
+            (i, j):&{}\\
+            &{}\q{\rho}_{Ai}\times\q{f}_{ij} = (\q{r}_i-\q{r}_A)\times\q{f}_{ij}\\
+            (j, i):&{}\\
+            &{}\q{\rho}_{Ai}\times\q{f}_{ij} = (\q{r}_j-\q{r}_A)\times(-\q{f}_{ij})\\
+            (i, j) + (j, i):&{}\\
+            &{}(\q{r}_i-\q{r}_A)\times\q{f}_{ij} - (\q{r}_j-\q{r}_A)\times\q{f}_{ij} \\
+            &=(\q{r}_i-\q{r}_j)\times{\q{f}_{ij}} \\
+            &=\q{0}
+        \end{align*}
+        Here, we used the fact that $\q{f}_{ij}=-\q{f}_{ji}$ and $\q{f}_{ij} \parallel (\q{r}_i-\q{r}_j)$.
+        This reduces the total torque to
+        $$\q{n}_A = \nsum{i}\q{\rho}_{Ai}\times\q{F}_i$$
+        \subsubsection*{Total angular momentum}
+        The angular momentum on a single particle i is defined as:
+        $$\q{h}_{Ai}^{\mathbf{i}} = m_i\q{\rho}_{Ai}\times\dot{\q{\rho}}_{Ai}^{\mathbf{i}}$$
+        Thus the total angular momentum is simply:
+        $$\q{h}_{Ai}^{\mathbf{i}} =\nsum{i} m_i\q{\rho}_{Ai}\times\dot{\q{\rho}}_{Ai}^{\mathbf{i}}$$
+        \subsubsection*{Relating total torque and angular momentum}
+        We compute the derivative of the total angular momentum seen from the inertial frame:
+        \begin{align*}
+            \dot{\q{h}}_{Ai}^{\mathbf{i}} &= \nsum{i}m_i\left(\dot{\q{\rho}}_{Ai}^{\mathbf{i}}\times\dot{\q{\rho}}_{Ai}^{\mathbf{i}} +{\q{\rho}}_{Ai}^{\mathbf{i}}\times \ddot{\q{\rho}}_{Ai}^{\mathbf{i}}\right)
+            \\ &= \nsum{i}\q{\rho}_{Ai}^{\mathbf{i}} \times (m_i\ddot{\q{\rho}}_{Ai}^{\mathbf{i}})
+        \end{align*}
+        We then consider the total torque $\q{n}_A$
+        \begin{align*}
+            \q{n}_A &= \nsum{i}\q{\rho}_{Ai}\times\q{F}_i\\
+            &=\nsum{i}\q{\rho}_{Ai}\times(m_i\ddot{\q{r}}_i^{\mathbf{i}}) \\
+        \end{align*}
+        Since the position vector of the particle i is $\q{r}_i = \q{r}_A + \q{\rho}_{Ai}$, this becomes
+        \begin{align*}
+            \q{n}_A = \nsum{i} \q{\rho}_{Ai} \times (m\ddot{\q{r}}_A^{\mathbf{i}})
+            + \underbrace{\q{\rho}_{Ai} \times (m\ddot{\q{\rho}}_{Ai}^{\mathbf{i}})}_{\dot{\q{h}}_{Ai}^{\mathbf{i}}}
+        \end{align*}
+        Thus
+        \begin{align*}
+            \q{n}_A = \dot{\q{h}}_{Ai}^{\mathbf{i}} + \nsum{i} \q{\rho}_{Ai} \times (m\ddot{\q{r}}_A^{\mathbf{i}})
+        \end{align*}
+        
+
+
+        
+    \end{proof}
 \end{theorem}
 \end{document}
