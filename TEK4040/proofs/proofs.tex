@@ -314,4 +314,41 @@ $$\q{y} = \q{\omega}\times\q{x} \algeq \aq{y}^p = S(\aq{\omega}^p)\aq{x}^p$$
 
     \end{proof}
 \end{theorem}
+
+\begin{theorem}
+    Given two frames $\mathcal{F}_{\mathcal{V}}^q = \left\{ O_q; \q{q}_1, \q{q}_2, \q{q}_3\right\}$ and $\mathcal{F}_{\mathcal{V}}^q = \left\{ O_p; \q{p}_1, \q{p}_2, \q{p}_3\right\}$ and a point P. Let 
+    \begin{align*}
+        \q{r} &= P-O_q \\
+        \q{\rho} &= P-O_p\\
+        \q{r}_{qp} &= O_p-O_q \\
+    \end{align*}
+    Then, we have the following relations for the velocity and acceleration seen from the q- and p-systems:
+        $$\q{r} = \q{r}_{qp} + \q{\rho} $$
+        $$\dot{\q{r}}^q = \dot{\q{r}}_{qp}^q + \dot{\q{\rho}}^p + \q{\omega}_p^q \times \q{\rho} $$
+        $$\ddot{\q{r}}^{qq} = \ddot{\q{r}}_{qp}^{qq} + \ddot{\q{\rho}}^{pp} + \dot{\q{\omega}}_p^{qq}\times\q{\rho} + \q{\omega}_p^q\times \left(\q{\omega}_p^q\times\q{\rho}\right)+2\q{\omega}_p^q\times \dot{\q{\rho}}^p$$
+\end{theorem}
+\begin{proof}
+    The first relation of the position vectors can be computed directly
+    \begin{align*}
+        \q{r}_{qp} + \q{\rho} &= (O_p-O_q) + (P-O_p) \\
+        \q{r}_{qp} + \q{\rho} &= \q{r}\\
+    \end{align*}
+    In this construction, the position vector $\q{\rho}$ and its derivatives can be considered as in the proof for theorem 9, so we have
+    $$\dot{\q{\rho}}^q = \dot{\q{\rho}}^p + \q{\omega}_p^q\times\q{\rho}$$
+    We take the q-frame derivative of both sides of the position vector equation, and apply this theorem recursively for $\q{\rho}$ and its derivatives, as well as the product rule for the cross-product derivatives
+    \begin{align*}
+        \q{r} &= \q{r}_{qp} + \q{\rho}  \\
+        \dot{\q{r}}^q &= \dot{\q{r}}_{qp}^q + \dot{\q{\rho}}^q \\
+        &= \underline{\dot{\q{r}}_{qp}^q + \dot{\q{\rho}}^p + \q{\omega}_p^q\times\q{\rho}}\\
+    \end{align*}
+    \begin{align*}
+        \ddot{\q{r}}^{qq} &= \frac{{}^qd}{dt}\left[ \dot{\q{r}}_{qp}^q + \dot{\q{\rho}}^p + \q{\omega}_p^q\times\q{\rho} \right]\\
+        &= \ddot{\q{r}}_{qp}^{qq} + \ddot{\q{\rho}}^{pq} +\left\{\dot{\q{\omega}}_p^{qq}\times\q{\rho}+\q{\omega}_p^q\times\dot{\q{\rho}}^q\right\}\\
+        &= \ddot{\q{r}}_{qp}^{qq} + \left(\ddot{\q{\rho}}^{pp}+\q{\omega}_p^q\times\dot{\q{\rho}}^p\right) + \left\{ \dot{\q{\omega}}_p^{qq}\times\q{\rho} + \q{\omega}_p^q \times \left(\dot{\q{\rho}}^p + \q{\omega}_p^q\times\q{\rho}\right)\right\}\\
+        &=\ddot{\q{r}}_{qp}^{qq} + \ddot{\q{\rho}}^{pp}+\q{\omega}_p^q\times\dot{\q{\rho}}^p + \dot{\q{\omega}}_p^{qq}\times\q{\rho} + \q{\omega}_p^q\times\dot{\q{\rho}}^p + \q{\omega}_p^q\times(\q{\omega}_p^q\times\q{\rho}) \\
+        \ddot{\q{r}}^{qq}&= \underline{\ddot{\q{r}}_{qp}^{qq} + \ddot{\q{\rho}}^{pp} + \dot{\q{\omega}}_p^{qq}\times\q{\rho} + \q{\omega}_p^q\times \left(\q{\omega}_p^q\times\q{\rho}\right)+2\q{\omega}_p^q\times \dot{\q{\rho}}^p}
+    \end{align*}
+    
+    
+\end{proof}
 \end{document}
